@@ -7,13 +7,13 @@
 <meta name="description" content="The BSI Production app suite: ShopCall, StandBy, PatchMap, Loader and TrussTape. Built in-house for the shop, the truck and the show.">
 <link rel="icon" href="favicon.ico">
 <meta property="og:title" content="BSI Apps">
-<meta property="og:description" content="Five apps that carry a gig from the shop order to the truck, from the truss to the GO call.">
-<meta property="og:image" content="img/loader-load.jpg">
+<meta property="og:description" content="Five apps that carry an event from the gear order in the shop to the truck, and from hanging the lights to running the show.">
+<meta property="og:image" content="img/ld-truck.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* ---- BSI tokens (from bsi-app-updates/kit/design/tokens.json, dark theme) ---- */
+/* ---- BSI tokens (bsi-app-updates/kit/design/tokens.json, dark theme) ---- */
 :root{
   --bg:#0A0B0D; --raised:#15171B; --sunken:#050607; --lit:#2F3135;
   --fg:#F1F2F3; --muted:#A9AFB6; --faint:#7D848C;
@@ -25,12 +25,14 @@
   --ease:cubic-bezier(.2,.7,.2,1);
   --gutter:clamp(16px,5vw,64px);
   --max:1180px;
+  --mx:0; --my:0;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--bg);color:var(--fg);font:400 17px/1.55 var(--sans);overflow-x:hidden}
+html,body{overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 17px/1.55 var(--sans)}
 img{max-width:100%;display:block}
 a{color:inherit}
 h1,h2,h3{margin:0;text-wrap:balance;letter-spacing:-.02em;line-height:1.05}
@@ -54,7 +56,7 @@ p{margin:0}
 @media (max-width:640px){.nav .brand span{display:none}}
 
 /* ---- hero ---- */
-.hero{position:relative;padding:calc(52px + env(safe-area-inset-top,0px) + 9vh) 0 6vh;text-align:center;overflow:hidden}
+.hero{position:relative;padding:calc(52px + env(safe-area-inset-top,0px) + 9vh) 0 0;text-align:center;overflow:hidden}
 .hero::before{content:"";position:absolute;inset:-20% -10% auto;height:120%;background:
   radial-gradient(40% 35% at 20% 30%,rgba(127,180,234,.16),transparent 70%),
   radial-gradient(35% 30% at 80% 25%,rgba(240,199,94,.14),transparent 70%),
@@ -70,18 +72,23 @@ p{margin:0}
 .icons a:hover img{transform:translateY(-8px) scale(1.04)}
 .icons .n{font-weight:600;font-size:14px}
 .icons .v{font:400 11px var(--mono);color:var(--faint)}
-.scrollcue{margin:64px auto 0;width:22px;height:36px;border:2px solid var(--border-strong);border-radius:12px;position:relative}
-.scrollcue::after{content:"";position:absolute;left:50%;top:6px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:var(--muted);animation:cue 1.8s infinite}
-@keyframes cue{0%{transform:translateY(0);opacity:1}70%{transform:translateY(12px);opacity:0}100%{opacity:0}}
+/* hero mosaic: a tilted strip of the apps' own screens */
+.mosaic{position:relative;margin-top:9vh;height:clamp(200px,34vw,420px);perspective:1400px;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.mosaic .row{position:absolute;left:50%;top:6%;display:flex;gap:clamp(10px,1.6vw,20px);transform:translateX(-50%) rotateX(24deg) rotateZ(-3deg);transform-origin:center top;transform-style:preserve-3d;will-change:transform}
+.mosaic .m{flex:0 0 clamp(220px,28vw,400px);border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.1);box-shadow:0 40px 80px -30px rgba(0,0,0,.9);background:#111317}
+.mosaic .m:nth-child(even){transform:translateY(28px)}
+.mosaic .m img{width:100%;height:100%;object-fit:cover;object-position:top left}
+.mosaic::after{content:"";position:absolute;inset:auto 0 0;height:45%;background:linear-gradient(transparent,var(--bg));pointer-events:none}
 
 /* ---- flow ---- */
-.flow{padding:12vh 0 10vh}
+.flow{padding:10vh 0 10vh}
 .flow h2{font-size:clamp(30px,4.6vw,56px);font-weight:700;max-width:22ch}
 .flow .lede{color:var(--muted);max-width:60ch;margin-top:16px;font-size:18px}
 .rail{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:56px;list-style:none;padding:0}
 .rail::before{content:"";position:absolute;left:8%;right:8%;top:38px;height:2px;background:linear-gradient(90deg,var(--patchmap),var(--shopcall),var(--loader),var(--trusstape),var(--standby));transform:scaleX(0);transform-origin:left;transition:transform 1.6s var(--ease) .2s;opacity:.9}
 .rail.in::before{transform:scaleX(1)}
-.rail li{position:relative;text-align:center;padding-top:0}
+.rail li{position:relative;text-align:center}
 .rail img{width:76px;border-radius:22.5%;margin:0 auto 14px;box-shadow:0 20px 40px -16px rgba(0,0,0,.8);position:relative}
 .rail .k{font-weight:700;font-size:15px}
 .rail .d{color:var(--muted);font-size:14px;margin-top:4px}
@@ -102,26 +109,31 @@ p{margin:0}
 .badge{display:inline-block;font:600 10px/1 var(--mono);letter-spacing:.1em;padding:5px 8px;border-radius:999px;border:1px solid var(--accent);color:var(--accent);vertical-align:middle;margin-left:8px}
 @media (max-width:560px){.app-head{grid-template-columns:1fr}.app-head img{width:72px;grid-row:auto}}
 
-/* device frames */
-.mac{position:relative;border-radius:14px;background:#111317;box-shadow:0 60px 120px -40px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.08);overflow:hidden}
-.mac img{width:100%;aspect-ratio:var(--ar,16/10);object-fit:cover;object-position:top}
+/* phone frame (used in tiles and scenes) */
 .phone{position:relative;width:100%;max-width:300px;border-radius:44px;background:#0d0e11;padding:10px;box-shadow:0 50px 100px -30px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.1),inset 0 0 0 2px #26282d}
 .phone::before{content:"";position:absolute;top:22px;left:50%;width:96px;height:26px;margin-left:-48px;background:#0d0e11;border-radius:16px;z-index:2}
 .phone img{border-radius:34px;aspect-ratio:390/844;object-fit:cover;object-position:top}
 
-/* scrollytelling */
-.story{display:grid;grid-template-columns:minmax(260px,1fr) minmax(0,1.5fr);gap:clamp(24px,5vw,72px);margin-top:9vh;align-items:start}
-.story.flip{grid-template-columns:minmax(0,1.5fr) minmax(260px,1fr)}
+/* ---- story: text steps on one side, a sticky stage of tilted detail cards on the other ---- */
+.story{display:grid;grid-template-columns:minmax(240px,.8fr) minmax(0,1.7fr);gap:clamp(24px,5vw,72px);margin-top:9vh;align-items:start}
+.story.flip{grid-template-columns:minmax(0,1.7fr) minmax(240px,.8fr)}
 .story.flip .stage{order:-1}
-.stage{position:sticky;top:calc(52px + env(safe-area-inset-top,0px) + 6vh);perspective:1400px}
-.stage .frame{position:relative;transform-style:preserve-3d}
-.stage .slide{position:absolute;inset:0;opacity:0;transform:scale(.965) translateY(10px);transition:opacity .6s var(--ease),transform .7s var(--ease);pointer-events:none}
-.stage .slide:first-child{position:relative}
-.stage .mac img{object-fit:contain;background:#111317}
-.stage .slide.on{opacity:1;transform:none;pointer-events:auto}
+.stage{position:sticky;top:calc(52px + env(safe-area-inset-top,0px) + 4vh)}
+.stage .box{position:relative;aspect-ratio:4/3;width:100%}
+.stage .box::before{content:"";position:absolute;inset:-6% 0;background:radial-gradient(50% 50% at 50% 50%,color-mix(in srgb,var(--accent) 22%,transparent),transparent 72%);filter:blur(30px);pointer-events:none}
+.scene{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .45s var(--ease),visibility 0s .45s}
+.scene.on{opacity:1;visibility:visible;transition-delay:0s}
+.card{position:absolute;left:var(--l,0);top:var(--t,0);width:var(--w,60%);border-radius:clamp(8px,1.4vw,14px);overflow:hidden;background:#111317;border:1px solid rgba(255,255,255,.1);box-shadow:0 30px 70px -20px rgba(0,0,0,.9),0 2px 0 rgba(255,255,255,.04) inset;
+  transform:perspective(1200px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(36px) scale(.94);opacity:0;transition:transform .9s var(--ease),opacity .6s var(--ease)}
+.card img{width:100%;height:auto}
+.scene.on .card{opacity:1;transform:perspective(1200px) rotateX(calc(var(--rx,0deg) - var(--my)*3deg)) rotateY(calc(var(--ry,0deg) + var(--mx)*4deg))}
+.scene.on .card:nth-child(2){transition-delay:.1s}
+.scene.on .card:nth-child(3){transition-delay:.2s}
+.card.z{z-index:2}
+.card.ph{border-radius:clamp(18px,3.5vw,34px);padding:min(1.2vw,8px);background:#0d0e11;box-shadow:0 30px 70px -20px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.1),inset 0 0 0 2px #26282d}
+.card.ph img{border-radius:clamp(14px,2.8vw,28px)}
 .stage .cap{margin-top:14px;display:flex;gap:10px;align-items:baseline;font-size:14px;color:var(--muted);min-height:1.5em}
 .stage .cap b{color:var(--accent);font:500 12px var(--mono);letter-spacing:.06em}
-.stage.phones .frame{display:flex;justify-content:center}
 .steps{list-style:none;margin:0;padding:0}
 .step{min-height:72vh;display:flex;flex-direction:column;justify-content:center;padding:6vh 0;opacity:.32;transition:opacity .5s var(--ease)}
 .step.on{opacity:1}
@@ -132,15 +144,12 @@ p{margin:0}
 .step p code{font:500 .92em var(--mono);color:var(--fg);background:var(--raised);padding:1px 6px;border-radius:5px;border:1px solid var(--border)}
 @media (max-width:820px){
   .story,.story.flip{display:flex;flex-direction:column}
-  .stage,.story.flip .stage{order:-1}
-  .stage{position:sticky;top:calc(52px + env(safe-area-inset-top,0px));z-index:1;background:var(--bg);padding:10px 0 8px}
-  .stage.phones .frame{transform:scale(.9);transform-origin:top center}
-  .stage.phones{max-height:56vh;overflow:hidden}
+  .stage,.story.flip .stage{order:-1;position:sticky;top:calc(52px + env(safe-area-inset-top,0px));z-index:1;background:var(--bg);padding:10px 0 8px}
   .stage .cap{margin-top:8px}
   .step{min-height:48vh;padding:8vh 0}
 }
 
-/* bento */
+/* ---- bento ---- */
 .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:10vh}
 .tile{grid-column:span 2;padding:24px;border-radius:14px;background:var(--raised);border:1px solid var(--border);display:flex;flex-direction:column;gap:10px;min-height:170px;position:relative;overflow:hidden}
 .tile.w{grid-column:span 3}
@@ -149,16 +158,19 @@ p{margin:0}
 .tile h4{margin:0;font-size:19px;font-weight:700;letter-spacing:-.02em;line-height:1.2}
 .tile p{color:var(--muted);font-size:15px;line-height:1.5}
 .tile .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 18%,transparent)}
-.tile .pic{margin:14px -24px -24px;border-radius:0;flex:1;display:flex;align-items:flex-end}
-.tile .pic .mac{border-radius:10px 10px 0 0;margin-left:24px;box-shadow:0 0 0 1px rgba(255,255,255,.08)}
+.tile .pic{margin:14px -24px -24px;flex:1;display:flex;align-items:flex-end}
 .tile .pic.ph{justify-content:center;padding-top:6px;margin-bottom:-90px}
 .tile .pic.ph .phone{max-width:240px}
+.tile .vig{margin:12px -24px -24px;flex:1;overflow:hidden;border-top:1px solid var(--border);background:#111317;
+  -webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent)}
+.tile .vig img{width:100%;transform:translate(10px,10px) scale(1.02);transform-origin:top left}
+.tile .vig.tilt img{transform:perspective(900px) rotateX(10deg) rotateY(-8deg) translate(6%,4%) scale(1.06);transform-origin:top left}
 .tile .kbd{font:500 12px var(--mono);color:var(--fg);background:var(--lit);padding:2px 7px;border-radius:5px;border:1px solid var(--border-strong)}
 .tile .big{font:700 clamp(36px,4vw,48px)/1 var(--sans);letter-spacing:-.03em;color:var(--accent)}
 @media (max-width:980px){.tile,.tile.w,.tile.x{grid-column:span 3}}
 @media (max-width:620px){.bento{grid-template-columns:1fr}.tile,.tile.w,.tile.x{grid-column:auto}.tile.h{grid-row:auto}}
 
-/* workflow */
+/* ---- workflow ---- */
 .work{margin-top:10vh;padding:34px clamp(20px,4vw,44px);border-radius:16px;border:1px solid var(--border);background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 7%,var(--raised)),var(--raised))}
 .work h3{font-size:clamp(22px,2.6vw,30px);font-weight:700;letter-spacing:-.02em}
 .work .sub{color:var(--muted);margin-top:6px;font-size:15px}
@@ -170,7 +182,7 @@ p{margin:0}
 .work li b{display:block;color:var(--fg);font-weight:600;margin-bottom:4px}
 @media (max-width:620px){.work li::after{display:none}}
 
-/* kit */
+/* ---- kit ---- */
 .kit{padding:14vh 0 8vh;border-top:1px solid var(--border)}
 .kit h2{font-size:clamp(32px,5vw,64px);font-weight:800;letter-spacing:-.035em}
 .kit .lede{color:var(--muted);max-width:56ch;margin-top:16px;font-size:18px}
@@ -185,22 +197,21 @@ p{margin:0}
 .vers .sw{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:-1px}
 @media (max-width:620px){.vers{overflow-x:auto}.vers table{min-width:560px}}
 
-/* footer */
+/* ---- footer ---- */
 .foot{padding:8vh 0 calc(8vh + env(safe-area-inset-bottom,0px));border-top:1px solid var(--border);color:var(--muted);font-size:14px}
 .foot .wrap{display:flex;flex-wrap:wrap;gap:20px 40px;align-items:center;justify-content:space-between}
 .foot img{height:22px;width:auto;opacity:.9}
 .foot a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--border-strong)}
 .foot .row{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center}
 
-/* reveal (js-only) */
+/* ---- reveal (js only) ---- */
 .js [data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 .js [data-reveal].in{opacity:1;transform:none}
-.js [data-tilt]{transition:transform .2s linear}
 @media (prefers-reduced-motion:reduce){
   .js [data-reveal]{opacity:1;transform:none;transition:none}
-  .stage .slide{transition:none}.step{transition:none}
-  .scrollcue::after{animation:none}.rail::before{transition:none}
-  .js [data-tilt]{transform:none!important}
+  .scene,.card,.step,.rail::before,.icons img{transition:none!important;animation:none!important}
+  .card{transform:none!important}
+  .mosaic .row{transform:translateX(-50%)!important}
 }
 </style>
 </head>
@@ -226,13 +237,23 @@ p{margin:0}
     <h1 id="h1"><span class="w">Built</span> <span class="w">for</span> <span class="w">the</span> <span class="w">shop.</span><br><span class="w">Built</span> <span class="w">in-house.</span></h1>
     <p class="lede">Five apps that carry an event from the gear order in the shop to the truck, and from hanging the lights to running the show. Made by the crew who use them.</p>
     <div class="icons" id="icons">
-      <a href="#shopcall" data-float="1"><img src="img/icon-shopcall.png" alt=""><span class="n">ShopCall</span><span class="v">web · iPhone · Android</span></a>
-      <a href="#standby" data-float="2"><img src="img/icon-standby.png" alt=""><span class="n">StandBy</span><span class="v">Mac 0.2.15</span></a>
-      <a href="#patchmap" data-float="3"><img src="img/icon-patchmap.png" alt=""><span class="n">PatchMap</span><span class="v">Mac 1.15.0</span></a>
-      <a href="#loader" data-float="4"><img src="img/icon-loader.png" alt=""><span class="n">Loader</span><span class="v">Mac 0.4.0</span></a>
-      <a href="#trusstape" data-float="5"><img src="img/icon-trusstape.png" alt=""><span class="n">TrussTape</span><span class="v">Mac 0.1.1 beta</span></a>
+      <a href="#shopcall"><img src="img/icon-shopcall.png" alt=""><span class="n">ShopCall</span><span class="v">web · iPhone · Android</span></a>
+      <a href="#standby"><img src="img/icon-standby.png" alt=""><span class="n">StandBy</span><span class="v">Mac 0.2.15</span></a>
+      <a href="#patchmap"><img src="img/icon-patchmap.png" alt=""><span class="n">PatchMap</span><span class="v">Mac 1.15.0</span></a>
+      <a href="#loader"><img src="img/icon-loader.png" alt=""><span class="n">Loader</span><span class="v">Mac 0.4.0</span></a>
+      <a href="#trusstape"><img src="img/icon-trusstape.png" alt=""><span class="n">TrussTape</span><span class="v">Mac 0.1.1 beta</span></a>
     </div>
-    <div class="scrollcue" aria-hidden="true"></div>
+  </div>
+  <div class="mosaic" aria-hidden="true">
+    <div class="row" id="mosaic">
+      <div class="m"><img src="img/sc-today-pull.jpg" alt=""></div>
+      <div class="m"><img src="img/sb-cards.jpg" alt=""></div>
+      <div class="m"><img src="img/ld-truck-colour.jpg" alt=""></div>
+      <div class="m"><img src="img/pm-schem.jpg" alt=""></div>
+      <div class="m"><img src="img/tt-tape.jpg" alt=""></div>
+      <div class="m"><img src="img/sb-display.jpg" alt=""></div>
+      <div class="m"><img src="img/sc-wall.jpg" alt=""></div>
+    </div>
   </div>
 </header>
 
@@ -270,30 +291,42 @@ p{margin:0}
     <div class="story">
       <ol class="steps">
         <li class="step" data-step="0"><div class="step-in"><div class="k">Today</div><h3>Opens on what needs you.</h3><p>Each role gets its own Today: what to act on, what's coming, and whether anything is broken. When the list is empty it says so. When it couldn't check, it says that instead of pretending all is clear.</p></div></li>
-        <li class="step" data-step="1"><div class="step-in"><div class="k">Orders</div><h3>Start an order from the calendar.</h3><p>An event on the calendar with “No order yet” gets a <code>Start its order</code> button. ShopCall copies the order template and registers the event as a draft.</p></div></li>
-        <li class="step" data-step="2"><div class="step-in"><div class="k">Order Builder</div><h3>Type it the way you'd say it.</h3><p>One search box: <code>6 sm58</code> means six SM58 microphones. It shows how many are actually free on those dates, with other events and loans already subtracted. Bundles, a “usually goes along” list, and fixes for shortages (rent one in, or swap in a stand-in). Then print the case labels and <code>Release</code> the order to the shop floor.</p></div></li>
-        <li class="step" data-step="3"><div class="step-in"><div class="k">Shop Board</div><h3>The bulletin board, the shopping list, done today.</h3><p>Post to the board from any phone. Shopping-list items move from open to ordered to received. Inspections and cleaning show up under Done today.</p></div></li>
+        <li class="step" data-step="1"><div class="step-in"><div class="k">Orders</div><h3>Start an order from the calendar.</h3><p>An event on the calendar with “No order yet” gets a <code>Start its order</code> button. ShopCall copies the order template and registers the event as a draft. Pack lists sent from PatchMap wait in the same inbox.</p></div></li>
+        <li class="step" data-step="2"><div class="step-in"><div class="k">Order Builder</div><h3>Type it the way you'd say it.</h3><p>One search box: <code>6 sm58</code> means six SM58 microphones. It shows how many are actually free on those dates, with other events and loans already subtracted. Shortages get a fix right on the line: rent some in, or swap in a stand-in. Then print the case labels and <code>Release</code> the order to the shop floor.</p></div></li>
+        <li class="step" data-step="3"><div class="step-in"><div class="k">Shop Board</div><h3>The bulletin board, the shopping list, done today.</h3><p>Post to the board from any phone. Shopping-list items move from open to ordered to received. A Note stays on each person's Today until they tap Seen.</p></div></li>
       </ol>
-      <div class="stage">
-        <div class="frame" data-tilt>
-          <div class="slide on"><div class="mac" style="--ar:1800/1290"><img src="img/shopcall-today.jpg" alt="ShopCall Today screen with two gigs in prep, a needs-you list and the coming-up calendar" loading="lazy"></div></div>
-          <div class="slide"><div class="mac" style="--ar:1800/1290"><img src="img/shopcall-orders.jpg" alt="ShopCall Orders page with a Start an order form and calendar gigs that have no order yet" loading="lazy"></div></div>
-          <div class="slide"><div class="mac" style="--ar:1800/1290"><img src="img/shopcall-order.jpg" alt="ShopCall Order Builder for Harvest Gala at Hilton with Audio and Video lines and free counts" loading="lazy"></div></div>
-          <div class="slide"><div class="mac" style="--ar:1800/1290"><img src="img/shopcall-board.jpg" alt="ShopCall Shop Board with the bulletin board, the shopping list and done today" loading="lazy"></div></div>
+      <div class="stage"><div class="box">
+        <div class="scene on">
+          <figure class="card" style="--l:0;--t:4%;--w:76%;--rx:4deg;--ry:-9deg"><img src="img/sc-today-pull.jpg" alt="ShopCall Today: Harvest Gala at Hilton, 38 of 52 pulled, with the lines still to pull" loading="lazy"></figure>
+          <figure class="card z" style="--l:38%;--t:54%;--w:62%;--rx:-2deg;--ry:8deg"><img src="img/sc-today-needs.jpg" alt="Needs you: an unreleased order and a blocked task" loading="lazy"></figure>
         </div>
-        <div class="cap"><b>TODAY</b><span>Desk view, two events in prep</span></div>
-      </div>
+        <div class="scene">
+          <figure class="card" style="--l:0;--t:4%;--w:70%;--rx:3deg;--ry:8deg"><img src="img/sc-orders-list.jpg" alt="Orders list with five events and their tape colours" loading="lazy"></figure>
+          <figure class="card z" style="--l:58%;--t:22%;--w:40%;--rx:0deg;--ry:-10deg"><img src="img/sc-orders-start.jpg" alt="Start an order form, and two pack lists waiting from PatchMap" loading="lazy"></figure>
+        </div>
+        <div class="scene">
+          <figure class="card" style="--l:4%;--t:0;--w:92%;--rx:8deg;--ry:-4deg"><img src="img/sc-order-short.jpg" alt="Order Builder audio lines with free counts and shortage fixes" loading="lazy"></figure>
+          <figure class="card z" style="--l:0;--t:42%;--w:36%;--rx:0deg;--ry:10deg"><img src="img/sc-order-add.jpg" alt="The Add box: type part of a name, 6 xlr 25, uplight" loading="lazy"></figure>
+          <figure class="card z" style="--l:62%;--t:36%;--w:34%;--rx:0deg;--ry:-8deg"><img src="img/sc-order-check.jpg" alt="Check panel listing four lines that are short and when they free up" loading="lazy"></figure>
+        </div>
+        <div class="scene">
+          <figure class="card" style="--l:0;--t:6%;--w:100%;--rx:10deg;--ry:0deg"><img src="img/sc-board.jpg" alt="Shop Board: bulletin board and shopping list" loading="lazy"></figure>
+          <figure class="card z" style="--l:54%;--t:46%;--w:44%;--rx:0deg;--ry:-9deg"><img src="img/sc-notes-write.jpg" alt="Write a note form" loading="lazy"></figure>
+        </div>
+      </div><div class="cap"><b>TODAY</b><span>Desk view, two events in prep</span></div></div>
     </div>
 
     <div class="bento">
-      <div class="tile h" data-reveal><span class="dot"></span><h4>Picking the gear, line by line</h4><p>The phone screen walks the order item by item as a technician pulls gear off the shelf. Ring means not yet, dot means pulled, truck means it's on the truck. If the order changes part way through, the line says so and asks for a <span class="kbd">Got it</span>.</p><div class="pic ph"><div class="phone"><img src="img/shopcall-pull.jpg" alt="ShopCall pull screen on a phone, 36 of 54 pulled, with an order-changed note" loading="lazy"></div></div></div>
-      <div class="tile h" data-reveal><span class="dot"></span><h4>Check-in when the gear comes back</h4><p>Count each line back in, report damage, add a note. Anything short or missing can go straight to the shopping list.</p><div class="pic ph"><div class="phone"><img src="img/shopcall-intake-phone.jpg" alt="ShopCall intake screen for River Wedding, 19 of 31 checked in, with three lines short or damaged" loading="lazy"></div></div></div>
+      <div class="tile h" data-reveal><span class="dot"></span><h4>Picking the gear, line by line</h4><p>The phone screen walks the order item by item as a technician pulls gear off the shelf. Ring means not yet, dot means pulled, truck means it's on the truck. If the order changes part way through, the line says so and asks for a <span class="kbd">Got it</span>.</p><div class="pic ph"><div class="phone"><img src="img/sc-pull-phone.jpg" alt="ShopCall pull screen on a phone, 36 of 54 pulled" loading="lazy"></div></div></div>
+      <div class="tile h" data-reveal><span class="dot"></span><h4>Check-in when the gear comes back</h4><p>Count each line back in, report damage, add a note. Anything short or missing can go straight to the shopping list.</p><div class="pic ph"><div class="phone"><img src="img/sc-intake-phone.jpg" alt="ShopCall intake screen for River Wedding, 19 of 31 checked in, with three lines short or damaged" loading="lazy"></div></div></div>
       <div class="tile" data-reveal><span class="dot"></span><h4>Three roles</h4><p>Technicians on the shop floor, the office with Today, Gigs, Board and Tasks, and the desk with orders, approvals, errors and settings.</p></div>
-      <div class="tile" data-reveal><span class="dot"></span><h4>Notes and feedback</h4><p>Anyone can leave a Note. It stays on each person's Today until they tap Seen. Send feedback goes to a shared inbox at the desk.</p></div>
+      <div class="tile" data-reveal><span class="dot"></span><h4>Order changed? It tells you.</h4><p>Edit an order while it's being picked and the changed line lights up on the phone with what changed and when.</p><div class="vig"><img src="img/sc-pull-changed.jpg" alt="A pull line showing Order changed: qty 4 to 6, with a Got it button" loading="lazy"></div></div>
       <div class="tile" data-reveal><span class="dot"></span><h4>6 am digest</h4><p>A morning email with the same checks as the app's needs-you list, plus a report after each event and Google Chat alerts.</p></div>
-      <div class="tile" data-reveal><span class="dot"></span><h4>Truck plan on the wall</h4><p>Loader's truck plan shows up in ShopCall to scale, nose to doors, and on a big screen in the shop that refreshes itself.</p></div>
-      <div class="tile w" data-reveal><span class="dot"></span><h4>On every phone</h4><p>One crew link, <span class="mono">bsiproduction.github.io</span>. A BSI tile on the iPhone home screen, an Android app with no address bar, and a built-in QR scanner that opens an item or a case from the tag stuck to it.</p></div>
-      <div class="tile w" data-reveal><span class="dot"></span><h4>Each page wears its stone</h4><p>Today is sandstone, Gigs are lapis, Inventory is jade, Approvals are amethyst. The Mineral header palette tells you where you are before you read a word.</p></div>
+      <div class="tile w" data-reveal><span class="dot"></span><h4>On the shop wall</h4><p>A big screen in the shop shows every event being pulled or coming back, with the numbers large enough to read from the dock. It refreshes itself.</p><div class="vig tilt"><img src="img/sc-wall.jpg" alt="Wall display: three events pulling, two coming back, notes" loading="lazy"></div></div>
+      <div class="tile w" data-reveal><span class="dot"></span><h4>The truck, on a phone</h4><p>Loader's plan shows up in ShopCall as an unloading list: which case comes off next, where it goes in the venue, and how far from the nose it was packed.</p><div class="pic ph"><div class="phone"><img src="img/sc-pack-phone.jpg" alt="Unloading list on a phone: 10 cases on 2 trucks, each with where it goes" loading="lazy"></div></div></div>
+      <div class="tile" data-reveal><span class="dot"></span><h4>Each page wears its stone</h4><p>Today is sandstone, Gigs are lapis, Inventory is jade. The header colour tells you where you are before you read a word.</p><div class="vig"><img src="img/sc-today-phone.jpg" alt="Today on a phone with the sandstone header" loading="lazy"></div></div>
+      <div class="tile" data-reveal><span class="dot"></span><h4>On every phone</h4><p>One crew link, <span class="mono">bsiproduction.github.io</span>. A BSI tile on the iPhone home screen, an Android app, and a QR scanner that opens an item or a case from the tag stuck to it.</p></div>
+      <div class="tile" data-reveal><span class="dot"></span><h4>Two weeks at a glance</h4><p>Coming up shows every event as prep, out and intake bars on a calendar strip, in its tape colour.</p><div class="vig"><img src="img/sc-today-coming.jpg" alt="Coming up calendar strip with prep, out and intake bars per event" loading="lazy"></div></div>
     </div>
 
     <div class="work" data-reveal>
@@ -326,23 +359,28 @@ p{margin:0}
         <li class="step" data-step="0"><div class="step-in"><div class="k">Caller</div><h3>StandBy, GO.</h3><p>The cards across the top show what's next, what's happening now with its time left, and whether the show is running early or late. <code>Space</code> is GO, <code>⌘Z</code> backs one up, <code>⌘B</code> is the big clock. Below it, the whole plan by department: video, audio, lighting.</p></div></li>
         <li class="step" data-step="1"><div class="step-in"><div class="k">Display</div><h3>A backstage screen that says it plainly.</h3><p><code>/display</code> is for a big screen in the wings or the green room: Show on time, what's happening now with its clock, and what's next with everything that goes with it. Each screen can be arranged by name from any laptop.</p></div></li>
         <li class="step" data-step="2"><div class="step-in"><div class="k">Timer</div><h3>A countdown the speaker can see.</h3><p><code>/timer</code> is a big countdown for the person on stage. <code>/script</code> scrolls the speaker's script in step with the show.</p></div></li>
-        <li class="step" data-step="3"><div class="step-in"><div class="k">Prompter</div><h3>Paste the script. Mark the cues.</h3><p>Paste the speaker's script from a Google Doc or Word. A <code>⟦12⟧</code> mark shows where cue 12 falls in the script, so the caller sees “N lines to go”. Mirror mode for teleprompter glass, any screen shape, and a speaker timer you can drag to size.</p></div></li>
-        <li class="step" data-step="4"><div class="step-in"><div class="k">Talent screen</div><h3>What the speaker sees.</h3><p>Big, clean, and locked down in Show mode so nothing can pop up in front of them. Practice mode rehearses privately while the crew screens stop following. Pace replays the rehearsal's reading speed.</p></div></li>
+        <li class="step" data-step="3"><div class="step-in"><div class="k">Prompter</div><h3>Paste the script. Mark the cues.</h3><p>Paste the speaker's script from a Google Doc or Word. A <code>⟦12⟧</code> mark shows where cue 12 falls in the script, so the caller sees “N lines to go”. A cue list on the right jumps to any mark, and the speaker timer sits under it.</p></div></li>
+        <li class="step" data-step="4"><div class="step-in"><div class="k">Talent screen</div><h3>What the speaker sees.</h3><p>Big, clean, and locked down in Show mode so nothing can pop up in front of them. Mirror mode for teleprompter glass. Practice mode rehearses privately while the crew screens stop following. Pace replays the rehearsal's reading speed.</p></div></li>
       </ol>
-      <div class="stage">
-        <div class="frame" data-tilt>
-          <div class="slide on"><div class="mac" style="--ar:1800/1125"><img src="img/standby-caller.jpg" alt="StandBy caller screen for Cornell Homecoming 2026 with Standby, Live and GO cards over the run of show" loading="lazy"></div></div>
-          <div class="slide"><div class="mac" style="--ar:1800/1125"><img src="img/standby-display.jpg" alt="StandBy display screen reading Show on time with the live cue clock and the standby cue" loading="lazy"></div></div>
-          <div class="slide"><div class="mac" style="--ar:1800/1125"><img src="img/standby-timer.jpg" alt="StandBy timer screen with a large green countdown" loading="lazy"></div></div>
-          <div class="slide"><div class="mac" style="--ar:1800/1125"><img src="img/standby-prompter.jpg" alt="StandBy prompter operator view with the script on the left, the talent preview on the right and the speaker timer" loading="lazy"></div></div>
-          <div class="slide"><div class="mac" style="--ar:1800/1125"><img src="img/standby-talent.jpg" alt="StandBy talent screen showing the script in large type" loading="lazy"></div></div>
+      <div class="stage"><div class="box">
+        <div class="scene on">
+          <figure class="card" style="--l:0;--t:6%;--w:82%;--rx:3deg;--ry:-8deg"><img src="img/sb-cards.jpg" alt="Standby card: cue 2 Gates Open. Live card: cue 1 House lights, 1:36 remaining" loading="lazy"></figure>
+          <figure class="card z" style="--l:64%;--t:30%;--w:34%;--rx:0deg;--ry:10deg"><img src="img/sb-go.jpg" alt="The GO button, Space bar, and Back one GO" loading="lazy"></figure>
+          <figure class="card z" style="--l:0;--t:40%;--w:70%;--rx:8deg;--ry:-3deg"><img src="img/sb-ros.jpg" alt="The run of show table with the live and standby rows highlighted" loading="lazy"></figure>
         </div>
-        <div class="cap"><b>CALLER</b><span>Sample show, five cues in</span></div>
-      </div>
+        <div class="scene"><figure class="card" style="--l:0;--t:14%;--w:100%;--rx:8deg;--ry:0deg"><img src="img/sb-display.jpg" alt="Display screen: Show on time, the live cue with its clock, the standby cue" loading="lazy"></figure></div>
+        <div class="scene"><figure class="card" style="--l:2%;--t:12%;--w:96%;--rx:4deg;--ry:-6deg"><img src="img/sb-timer.jpg" alt="Timer screen with a large green countdown" loading="lazy"></figure></div>
+        <div class="scene">
+          <figure class="card" style="--l:0;--t:2%;--w:56%;--rx:0deg;--ry:9deg"><img src="img/sb-prompt-script.jpg" alt="The prompter script with cue marks inline" loading="lazy"></figure>
+          <figure class="card z" style="--l:54%;--t:10%;--w:46%;--rx:0deg;--ry:-10deg"><img src="img/sb-prompt-cues.jpg" alt="Cue list: each cue with how many lines away it is and a Jump button" loading="lazy"></figure>
+          <figure class="card z" style="--l:46%;--t:46%;--w:50%;--rx:4deg;--ry:-6deg"><img src="img/sb-prompt-timer.jpg" alt="Speaker timer set to 5:00 with Start, Flash and Reset" loading="lazy"></figure>
+        </div>
+        <div class="scene"><figure class="card" style="--l:0;--t:12%;--w:100%;--rx:6deg;--ry:0deg"><img src="img/sb-talent.jpg" alt="Talent screen: Good evening, and welcome to Homecoming, in large type" loading="lazy"></figure></div>
+      </div><div class="cap"><b>CALLER</b><span>Sample show, five cues in</span></div></div>
     </div>
 
     <div class="bento">
-      <div class="tile h" data-reveal><span class="dot"></span><h4>Follow on any phone</h4><p>Scan the QR code on the caller's screen, pick your department, and see what's next for you, what's happening now and what's coming up. Editors get <span class="mono">/edit</span> with a PIN and can fix the plan but never fire a GO.</p><div class="pic ph"><div class="phone"><img src="img/standby-follow-phone.jpg" alt="StandBy follow screen on a phone for the Video department" loading="lazy"></div></div></div>
+      <div class="tile h" data-reveal><span class="dot"></span><h4>Follow on any phone</h4><p>Scan the QR code on the caller's screen, pick your department, and see what's next for you, what's happening now and what's coming up. Editors get <span class="mono">/edit</span> with a PIN and can fix the plan but never fire a GO.</p><div class="pic ph"><div class="phone"><img src="img/sb-follow-phone.jpg" alt="Follow screen on a phone for the Video department" loading="lazy"></div></div></div>
       <div class="tile" data-reveal><span class="dot"></span><h4>From the Google Sheet</h4><p>Write the run of show in the BSI template sheet. Check it, Send to Host, and Pull Show Results afterwards to see how the timing went. A plain CSV file works with no internet.</p></div>
       <div class="tile" data-reveal><span class="dot"></span><h4>Messages and banners</h4><p><span class="kbd">M</span> sends a silent text to every crew screen, and they can answer. Green banners close themselves after 8 seconds. Red ones wait for an OK.</p></div>
       <div class="tile" data-reveal><span class="dot"></span><h4>Rehearsal mode</h4><p>Before the first GO, times are recorded without counting as the real show. Rehearsal is violet, next is amber, now is green, late is red.</p></div>
@@ -379,32 +417,38 @@ p{margin:0}
     <div class="story">
       <ol class="steps">
         <li class="step" data-step="0"><div class="step-in"><div class="k">Schematic ⌘1</div><h3>Drop gear. Click port to port.</h3><p>Pull equipment from the library into racks, tables and zones (front of house, stage, monitor world), or onto a venue map. Click a socket on one device, then a socket on another, to run a cable. Zoomed out, each device shows its name and how many sockets are in use.</p></div></li>
-        <li class="step" data-step="1"><div class="step-in"><div class="k">Inspector</div><h3>Every socket, every label.</h3><p>Zoom in and the sockets come back. Plugging the wrong connector type warns you, with <code>Patch anyway</code> for adapters. Cable ID, label and length live in the Inspector.</p></div></li>
+        <li class="step" data-step="1"><div class="step-in"><div class="k">Inspector</div><h3>Every socket, every label.</h3><p>Select a device and the Inspector lists its real sockets, in and out, with their connector types. Select a cable and you set its ID, label and length. Plugging the wrong connector type warns you, with <code>Patch anyway</code> for adapters.</p></div></li>
         <li class="step" data-step="2"><div class="step-in"><div class="k">Racks</div><h3>Open a rack, see what's inside.</h3><p>A rack is a case full of equipment. A dashed ring on a rack's socket means the cable is connected inside. Built racks save to the library and come back whole next time.</p></div></li>
         <li class="step" data-step="3"><div class="step-in"><div class="k">Patch sheet ⌘2</div><h3>One line per cable.</h3><p>From, to, connector type and label, with a tick box for connecting it on site. Assign cable IDs…, Print labels, Copy as text, or Print / PDF the whole pack.</p></div></li>
-        <li class="step" data-step="4"><div class="step-in"><div class="k">Packlist ⌘3</div><h3>Everything to pack, with Out and Back.</h3><p>Grouped by rack and zone. Live stock counts come from ShopCall, and a red “N short” marker shows what the shop can't cover before you send the order.</p></div></li>
+        <li class="step" data-step="4"><div class="step-in"><div class="k">Packlist ⌘3</div><h3>Everything to pack, with Out and Back.</h3><p>Grouped by rack and zone. The rig summary counts what's still to do: cables without an ID, devices with nothing plugged in, a missing load-in date.</p></div></li>
       </ol>
-      <div class="stage">
-        <div class="frame" data-tilt>
-          <div class="slide on"><div class="mac" style="--ar:16/10"><img src="img/patchmap-schematic.jpg" alt="PatchMap schematic of the CU Homecoming 2026 rig, zoomed out" loading="lazy"></div></div>
-          <div class="slide"><div class="mac" style="--ar:16/10"><img src="img/patchmap-device.jpg" alt="PatchMap with a device selected and the Inspector open" loading="lazy"></div></div>
-          <div class="slide"><div class="mac" style="--ar:16/10"><img src="img/patchmap-rack.jpg" alt="PatchMap with a rack open showing the devices inside" loading="lazy"></div></div>
-          <div class="slide"><div class="mac" style="--ar:16/10"><img src="img/patchmap-sheet.jpg" alt="PatchMap patch sheet, one line per cable" loading="lazy"></div></div>
-          <div class="slide"><div class="mac" style="--ar:16/10"><img src="img/patchmap-packlist.jpg" alt="PatchMap packlist grouped by rack and zone" loading="lazy"></div></div>
+      <div class="stage"><div class="box">
+        <div class="scene on">
+          <figure class="card" style="--l:0;--t:4%;--w:84%;--rx:3deg;--ry:-8deg"><img src="img/pm-schem.jpg" alt="PatchMap schematic: cameras, converters and a video rack, cabled" loading="lazy"></figure>
+          <figure class="card z" style="--l:70%;--t:22%;--w:26%;--rx:0deg;--ry:12deg"><img src="img/pm-library.jpg" alt="Library categories: racks, looms, consoles, cameras, speakers" loading="lazy"></figure>
         </div>
-        <div class="cap"><b>SCHEMATIC</b><span>CU Homecoming 2026, 16 devices, 29 cables</span></div>
-      </div>
+        <div class="scene">
+          <figure class="card z" style="--l:54%;--t:2%;--w:44%;--rx:0deg;--ry:-10deg"><img src="img/pm-inspector.jpg" alt="Device inspector for a Blackmagic URSA camera listing its ports" loading="lazy"></figure>
+          <figure class="card" style="--l:4%;--t:8%;--w:40%;--rx:0deg;--ry:8deg"><img src="img/pm-cable.jpg" alt="Cable inspector: from, to, type, ID, label, length" loading="lazy"></figure>
+        </div>
+        <div class="scene"><figure class="card" style="--l:4%;--t:3%;--w:92%;--rx:6deg;--ry:-5deg"><img src="img/pm-rack.jpg" alt="Inside the Blackmagic Video Suite rack, laid out by signal flow" loading="lazy"></figure></div>
+        <div class="scene"><figure class="card" style="--l:2%;--t:10%;--w:96%;--rx:4deg;--ry:6deg"><img src="img/pm-sheet.jpg" alt="Patch sheet: one line per cable with from, connector and to" loading="lazy"></figure></div>
+        <div class="scene">
+          <figure class="card" style="--l:0;--t:4%;--w:82%;--rx:2deg;--ry:-6deg"><img src="img/pm-pack.jpg" alt="Packlist for CU Homecoming 2026" loading="lazy"></figure>
+          <figure class="card z" style="--l:66%;--t:24%;--w:32%;--rx:0deg;--ry:10deg"><img src="img/pm-rigpanel.jpg" alt="This rig: 16 devices, 1 rack, 29 cables, still to do" loading="lazy"></figure>
+        </div>
+      </div><div class="cap"><b>SCHEMATIC</b><span>CU Homecoming 2026, 16 devices, 29 cables</span></div></div>
     </div>
 
     <div class="bento">
-      <div class="tile" data-reveal><span class="dot"></span><span class="big">156</span><h4>Gear models with their real sockets</h4><p>BSI's library, plus looms, kits, your own models and built racks. ⌘L.</p></div>
+      <div class="tile w" data-reveal><span class="dot"></span><span class="big">156</span><h4>Gear models with their real sockets</h4><p>BSI's library, plus looms, kits, your own models and built racks. Edit one and every copy in the rig updates.</p><div class="vig tilt"><img src="img/pm-libdlg.jpg" alt="Library dialog listing racks and kits with Edit and Place buttons" loading="lazy"></div></div>
+      <div class="tile w" data-reveal><span class="dot"></span><h4>Send to ShopCall…</h4><p>Order lines for an event, or a purchase list for a permanent install, go straight to ShopCall's inbox with live stock counts and a red “N short” marker. In ShopCall, Orders › Import from PatchMap.</p><div class="vig tilt"><img src="img/sc-orders-start.jpg" alt="ShopCall's Orders page showing two pack lists waiting from PatchMap" loading="lazy"></div></div>
       <div class="tile" data-reveal><span class="dot"></span><h4>Patch several cables ⌘B</h4><p>Stage box 1–16 to console 1–16 in one go. Bundled cables (looms and snakes) patch as one run.</p></div>
       <div class="tile" data-reveal><span class="dot"></span><h4>Find ⌘F</h4><p>Jump to a device, a port or a cable ID. A cable result shows where it runs from and to.</p></div>
-      <div class="tile w" data-reveal><span class="dot"></span><h4>Send to ShopCall…</h4><p>Order lines for an event, or a purchase list for a permanent install, go straight to ShopCall's inbox. In ShopCall, Orders › Import from PatchMap.</p></div>
-      <div class="tile w" data-reveal><span class="dot"></span><h4>The patch pack ⌘P</h4><p>Drawing, cable list, pack list and labels in one PDF. Big drawings split across numbered sheets instead of shrinking. Link to Gig saves it into the event's Drive folder.</p></div>
-      <div class="tile" data-reveal><span class="dot"></span><h4>Still to do</h4><p>The rig summary counts cables without an ID, devices with nothing plugged in, and a missing load-in date.</p></div>
+      <div class="tile" data-reveal><span class="dot"></span><h4>The patch pack ⌘P</h4><p>Drawing, cable list, pack list and labels in one PDF. Big drawings split across numbered sheets instead of shrinking. Link to Gig saves it into the event's Drive folder.</p></div>
       <div class="tile" data-reveal><span class="dot"></span><h4>Cable styles you can read in black and white</h4><p>Power is dashed, USB dotted, fibre a double line. Light and dark appearance.</p></div>
       <div class="tile" data-reveal><span class="dot"></span><h4>Share with another Mac</h4><p>One zip with the app, the library and the rigs. Updates are code-only and under 1 MB.</p></div>
+      <div class="tile" data-reveal><span class="dot"></span><h4>Keys, not menus</h4><p>Scroll to zoom, drag to box-select, Esc cancels the cable you're running, ⌘1 2 3 switch views.</p></div>
     </div>
 
     <div class="work" data-reveal>
@@ -438,29 +482,41 @@ p{margin:0}
         <li class="step" data-step="1"><div class="step-in"><div class="k">Colour by what's inside</div><h3>See the speakers from across the shop.</h3><p>Every physical case is linked to what's packed inside it. Switch on Colour by What's Inside and the truck lights up by group: speakers, amplifier racks, consoles, cable.</p></div></li>
         <li class="step" data-step="2"><div class="step-in"><div class="k">From above</div><h3>Four views, one plan.</h3><p>3D, Above, Side and Doors. The PDF prints all four, with a loading step by step and an Unloading at the venue page: last in, first out, grouped by where each case goes in the venue.</p></div></li>
         <li class="step" data-step="3"><div class="step-in"><div class="k">Open Shop Order</div><h3>The gear order becomes the To pack list.</h3><p>File › Open Shop Order… reads the event's order from ShopCall. Pack cases one at a time with Enter, or Pack the rest and flip through the best three plans.</p></div></li>
-        <li class="step" data-step="4"><div class="step-in"><div class="k">Checklist</div><h3>In and Out, on paper or on a phone.</h3><p>The checklist lists every case with an In box and an Out box. Send Pack Numbers writes each case's truck, position and loading step back to the order, so ShopCall can draw the same truck.</p></div></li>
+        <li class="step" data-step="4"><div class="step-in"><div class="k">Checklist</div><h3>In and Out, on paper or on a phone.</h3><p>The checklist lists every case with an In box and an Out box. Send Pack Numbers writes each case's truck, position and loading step back to the order, so ShopCall can show the same truck on a phone.</p></div></li>
       </ol>
-      <div class="stage">
-        <div class="frame" data-tilt>
-          <div class="slide on"><div class="mac" style="--ar:1800/1080"><img src="img/loader-load.jpg" alt="Loader with a Penske 26-foot truck packed with numbered cases in 3D" loading="lazy"></div></div>
-          <div class="slide"><div class="mac" style="--ar:1800/1080"><img src="img/loader-colour.jpg" alt="Loader truck coloured by what's inside each case, with a legend" loading="lazy"></div></div>
-          <div class="slide"><div class="mac" style="--ar:1800/1080"><img src="img/loader-top.jpg" alt="Loader plan viewed from above" loading="lazy"></div></div>
-          <div class="slide"><div class="mac" style="--ar:1800/1080"><img src="img/loader-queue.jpg" alt="Loader with a To pack list read from a shop order and an empty truck" loading="lazy"></div></div>
-          <div class="slide"><div class="mac" style="--ar:1800/1080"><img src="img/loader-checklist.jpg" alt="Loader loadout checklist with In and Out boxes" loading="lazy"></div></div>
+      <div class="stage"><div class="box">
+        <div class="scene on">
+          <figure class="card" style="--l:0;--t:4%;--w:78%;--rx:3deg;--ry:-8deg"><img src="img/ld-truck.jpg" alt="A Penske 26-foot truck packed with numbered cases, in 3D" loading="lazy"></figure>
+          <figure class="card z" style="--l:70%;--t:16%;--w:28%;--rx:0deg;--ry:12deg"><img src="img/ld-order.jpg" alt="This load: 39% of the space filled, and the loading order" loading="lazy"></figure>
         </div>
-        <div class="cap"><b>3D</b><span>Acme Gala demo load, 48 cases</span></div>
-      </div>
+        <div class="scene">
+          <figure class="card" style="--l:0;--t:2%;--w:82%;--rx:3deg;--ry:-6deg"><img src="img/ld-truck-colour.jpg" alt="The truck coloured by what's inside each case" loading="lazy"></figure>
+          <figure class="card z" style="--l:58%;--t:44%;--w:40%;--rx:0deg;--ry:10deg"><img src="img/ld-legend.jpg" alt="What's inside legend: speakers 19, amp racks 6, drive 2, consoles 2" loading="lazy"></figure>
+          <figure class="card z" style="--l:0;--t:40%;--w:24%;--rx:0deg;--ry:8deg"><img src="img/ld-inside-list.jpg" alt="Speakers group: GTS-1 to GTS-8 karts, HDL10 numbers" loading="lazy"></figure>
+        </div>
+        <div class="scene"><figure class="card" style="--l:2%;--t:3%;--w:96%;--rx:8deg;--ry:0deg"><img src="img/ld-top.jpg" alt="The plan from above: nose, curb side, street side, doors" loading="lazy"></figure></div>
+        <div class="scene">
+          <figure class="card" style="--l:22%;--t:4%;--w:78%;--rx:2deg;--ry:-8deg"><img src="img/ld-queue-truck.jpg" alt="An empty truck waiting for the first case" loading="lazy"></figure>
+          <figure class="card z" style="--l:0;--t:8%;--w:30%;--rx:0deg;--ry:10deg"><img src="img/ld-queue.jpg" alt="To pack list from a shop order: Pack the rest, Set pack order, Next: GTS-1" loading="lazy"></figure>
+        </div>
+        <div class="scene">
+          <figure class="card" style="--l:0;--t:4%;--w:88%;--rx:4deg;--ry:-6deg"><img src="img/ld-checklist.jpg" alt="Loadout checklist with Loading in and Loading out ticks" loading="lazy"></figure>
+          <figure class="card ph z" style="--l:70%;--t:12%;--w:28%;--rx:0deg;--ry:-10deg"><img src="img/sc-pack-phone.jpg" alt="The same truck as an unloading list on a phone in ShopCall" loading="lazy"></figure>
+        </div>
+      </div><div class="cap"><b>THE LOAD</b><span>Acme Gala demo load, 48 cases</span></div></div>
     </div>
 
     <div class="bento">
-      <div class="tile" data-reveal><span class="dot"></span><span class="big">29</span><h4>Road case types, 77 pieces</h4><p>The 200, 300 and 350 series cases, rack cases and speaker carts, straight from a walk around the shop, with size, weight and how many BSI owns.</p></div>
+      <div class="tile w" data-reveal><span class="dot"></span><span class="big">29</span><h4>Road case types, 77 pieces</h4><p>The 200, 300 and 350 series cases, rack cases and speaker carts, straight from a walk around the shop, with size, weight and how many BSI owns.</p><div class="vig"><img src="img/ld-cases.jpg" alt="The case list: 48 channel split, ClearCom, DR1, DR2 with sizes and rules" loading="lazy"></div></div>
+      <div class="tile w" data-reveal><span class="dot"></span><h4>Import from a walkthrough</h4><p>Paste the transcript: “Amp rack A, 30 by 24 by 40, 220 pounds, this side up.” Loader reads it into the case library, or takes a CSV.</p><div class="vig tilt"><img src="img/ld-import.jpg" alt="Import cases dialog with a pasted walkthrough transcript and the parsed table" loading="lazy"></div></div>
       <div class="tile" data-reveal><span class="dot"></span><h4>Rules the shop already has</h4><p>This side up, nothing on top, fragile, on wheels, wheel cups, stays on the floor. A 300-series case tips onto its end, never its side.</p></div>
       <div class="tile" data-reveal><span class="dot"></span><h4>Blocks the bad stack</h4><p>No overlaps, nothing through a wall, nothing on a no-stack case. Wheeled cases only sit in matching wheel cups. Warns on overhang and heavy over light.</p></div>
-      <div class="tile w" data-reveal><span class="dot"></span><h4>Which truck do I need?</h4><p>Sprinter van, 16', 24' and 26' box trucks, 48' and 53' trailers, with the E-track rails that straps lock into. Choose a truck trial-packs every one and picks the smallest that holds everything.</p></div>
-      <div class="tile w" data-reveal><span class="dot"></span><h4>Import from a walkthrough</h4><p>Paste the transcript: “Amp rack A, 30 by 24 by 40, 220 pounds, this side up.” Loader reads it into the case library, or takes a CSV.</p></div>
-      <div class="tile" data-reveal><span class="dot"></span><h4>Load bars and straps</h4><p>Suggest Load Bars and Straps places them on the rails so nothing shifts on the road. <span class="kbd">B</span> and <span class="kbd">S</span> add them by hand.</p></div>
+      <div class="tile" data-reveal><span class="dot"></span><h4>Which truck do I need?</h4><p>Sprinter van, 16', 24' and 26' box trucks, 48' and 53' trailers. Choose a truck trial-packs every one and picks the smallest that holds everything.</p></div>
+      <div class="tile w" data-reveal><span class="dot"></span><h4>Pack the rest, three ways</h4><p>One undoable step packs the whole list. Loader scores each plan and offers the best three: Best fit, Floor first, Street side first.</p><div class="vig tilt"><img src="img/ld-autopack.jpg" alt="Auto-pack result with cases selected and the options panel" loading="lazy"></div></div>
+      <div class="tile w" data-reveal><span class="dot"></span><h4>Load bars and straps</h4><p>Suggest Load Bars and Straps places them on the E-track rails (the rails inside the truck that straps lock into) so nothing shifts on the road. <span class="kbd">B</span> and <span class="kbd">S</span> add them by hand.</p><div class="vig tilt"><img src="img/ld-suggested.jpg" alt="The truck with suggested load bars and straps drawn in" loading="lazy"></div></div>
       <div class="tile" data-reveal><span class="dot"></span><h4>Pack labels</h4><p>Sheet labels striped in the event's tape colour, with a QR code that opens the case in ShopCall.</p></div>
       <div class="tile" data-reveal><span class="dot"></span><h4>Save to gig folder</h4><p>The plan PDF, the checklist and the labels land in the order's Drive folder.</p></div>
+      <div class="tile" data-reveal><span class="dot"></span><h4>What's in each case</h4><p>Click each item from the shop's inventory onto the case it lives in. That's what Colour by What's Inside reads.</p></div>
     </div>
 
     <div class="work" data-reveal>
@@ -493,21 +549,22 @@ p{margin:0}
         <li class="step" data-step="0"><div class="step-in"><div class="k">Positions</div><h3>Every truss and boom, with its lights.</h3><p>Run the export script in Vectorworks (the drawing program) and TrussTape opens the plan. Pick Truss 1, tick the label lines you want, and the pages preview as they'll print, so no label is cut in half at a join.</p></div></li>
         <li class="step" data-step="1"><div class="step-in"><div class="k">The tape</div><h3>Unit, channel, address, colour, purpose.</h3><p>Each label prints on a ruler in feet and inches or metres, so the crew can measure as they go. Zero at the centre of the truss or the start of the tape. Flip it to read from the other end. Cut at the ✂ lines and butt the pages together.</p></div></li>
       </ol>
-      <div class="stage">
-        <div class="frame" data-tilt>
-          <div class="slide on"><div class="mac" style="--ar:16/10"><img src="img/trusstape-app.jpg" alt="TrussTape with the sample plot open, Truss 1 selected, and ten tape pages previewed" loading="lazy"></div></div>
-          <div class="slide"><div class="mac" style="--ar:16/10"><img src="img/trusstape-tape.jpg" alt="Close-up of a printed tape header for Truss 2, page 2 of 10, trim 22 feet" loading="lazy"></div></div>
+      <div class="stage"><div class="box">
+        <div class="scene on">
+          <figure class="card" style="--l:20%;--t:2%;--w:80%;--rx:3deg;--ry:-8deg"><img src="img/tt-pages.jpg" alt="Tape pages previewed as they will print" loading="lazy"></figure>
+          <figure class="card z" style="--l:0;--t:24%;--w:34%;--rx:0deg;--ry:10deg"><img src="img/tt-positions.jpg" alt="Positions: SL Boom, Truss 1 with 10 lights over 40 feet, Truss 2" loading="lazy"></figure>
+          <figure class="card z" style="--l:54%;--t:44%;--w:44%;--rx:4deg;--ry:-6deg"><img src="img/tt-labels.jpg" alt="Label lines to print: unit, channel, fixture type, address, colour, purpose" loading="lazy"></figure>
         </div>
-        <div class="cap"><b>AS HUNG</b><span>Sample ballroom plan, 24 lights, 3 trusses</span></div>
-      </div>
+        <div class="scene"><figure class="card" style="--l:11%;--t:2%;--w:78%;--rx:8deg;--ry:-3deg"><img src="img/tt-tape.jpg" alt="Close-up of the printed tape: Truss 2, page 2 of 10, then the first labels on the ruler" loading="lazy"></figure></div>
+      </div><div class="cap"><b>POSITIONS</b><span>Sample ballroom plan, 24 lights, 3 trusses</span></div></div>
     </div>
 
     <div class="bento">
       <div class="tile w" data-reveal><span class="dot"></span><h4>From Vectorworks, without touching the drawing</h4><p>The export script writes every light and every hanging position to a small file and opens TrussTape. It changes nothing in the drawing. Or drop in the spreadsheet from Export Instrument Data.</p></div>
       <div class="tile" data-reveal><span class="dot"></span><span class="big">1:1</span><h4>Full size, or a pocket strip</h4><p>1:2 to 1:12 for a reference you can carry, from the same plan.</p></div>
-      <div class="tile" data-reveal><span class="dot"></span><h4>Any roll</h4><p>80 mm receipt, 58 mm, Dymo 2¼" continuous, or custom. Page length and paper loss are adjustable.</p></div>
+      <div class="tile" data-reveal><span class="dot"></span><h4>Any roll</h4><p>80 mm receipt, 58 mm, Dymo 2¼" continuous, or custom. Page length and paper loss are adjustable.</p><div class="vig"><img src="img/tt-paper.jpg" alt="Paper settings: 80 mm receipt roll, page length, paper loss, scale 1:1" loading="lazy"></div></div>
       <div class="tile" data-reveal><span class="dot"></span><h4>Feed calibration</h4><p>Printers don't feed paper perfectly. Print a 500 mm strip, measure it, type the number, and every tape after that is stretched to match. A percent off is inches over a 40' truss.</p></div>
-      <div class="tile" data-reveal><span class="dot"></span><h4>Print or PDF</h4><p>Print this position, Print all, Save PDF, Save all as PDF. Any printer your Mac can see, with a custom roll size.</p></div>
+      <div class="tile" data-reveal><span class="dot"></span><h4>Print or PDF</h4><p>Print this position, Print all, Save PDF, Save all as PDF. Any printer your Mac can see, with a custom roll size.</p><div class="vig"><img src="img/tt-print.jpg" alt="Print buttons: Print this position, Print all, Save PDF, Save all as PDF" loading="lazy"></div></div>
       <div class="tile x" data-reveal><span class="dot"></span><h4>First build</h4><p>0.1.1 is the first test build. It prints to PDF today and is waiting on its first run on a thermal printer and its first run of the script inside Vectorworks. Feedback from that test shapes 0.2.</p></div>
     </div>
 
@@ -580,18 +637,19 @@ p{margin:0}
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:.05});
   document.querySelectorAll('[data-reveal]').forEach(function(el){io.observe(el);});
 
-  // scrollytelling: the picture follows the text block that has reached the middle of the screen
+  // story: the scene follows the text block that has reached the middle of the screen
   var stories=[];
   document.querySelectorAll('.story').forEach(function(story){
-    var steps=[].slice.call(story.querySelectorAll('.step')), slides=story.querySelectorAll('.slide'), cap=story.querySelector('.cap'), cur=-1;
-    var caps=steps.map(function(s){return s.querySelector('.k').textContent.replace(/\s*[\u2318\d]+$/,'');});
-    function go(i){if(i===cur)return;cur=i;steps.forEach(function(s,j){s.classList.toggle('on',j===i);});slides.forEach(function(s,j){s.classList.toggle('on',j===i);});if(cap){cap.querySelector('b').textContent=caps[i].toUpperCase();}}
+    var steps=[].slice.call(story.querySelectorAll('.step')), scenes=story.querySelectorAll('.scene'), cap=story.querySelector('.cap'), cur=-1;
+    var caps=steps.map(function(s){return s.querySelector('.k').textContent.replace(/\s*[⌘\d]+$/,'');});
+    function go(i){if(i===cur)return;cur=i;steps.forEach(function(s,j){s.classList.toggle('on',j===i);});scenes.forEach(function(s,j){s.classList.toggle('on',j===i);});if(cap){cap.querySelector('b').textContent=caps[i].toUpperCase();}}
     story.update=function(){var line=innerHeight*(innerWidth<=820?.66:.55),i=0;for(var j=0;j<steps.length;j++){if(steps[j].querySelector('.step-in').getBoundingClientRect().top<=line)i=j;}go(i);};
     story.update(); stories.push(story);
+    // pointer parallax on the stage
+    var stage=story.querySelector('.stage');
+    if(!reduce&&stage){stage.addEventListener('pointermove',function(e){var r=stage.getBoundingClientRect();stage.style.setProperty('--mx',((e.clientX-r.left)/r.width*2-1).toFixed(3));stage.style.setProperty('--my',((e.clientY-r.top)/r.height*2-1).toFixed(3));});
+      stage.addEventListener('pointerleave',function(){stage.style.setProperty('--mx',0);stage.style.setProperty('--my',0);});}
   });
-
-  // rail
-  var rail=document.querySelector('[data-rail]');
 
   // nav highlight
   var links=document.querySelectorAll('.nav li a'), secs=[];
@@ -599,19 +657,18 @@ p{margin:0}
   var no=new IntersectionObserver(function(es){es.forEach(function(e){var a=secs.find(function(p){return p[0]===e.target;});if(!a)return;if(e.isIntersecting){links.forEach(function(l){l.classList.remove('on');});a[1].classList.add('on');}});},{rootMargin:'-40% 0px -55% 0px'});
   secs.forEach(function(p){no.observe(p[0]);});
 
-  var floats=document.querySelectorAll('[data-float]'), tilts=document.querySelectorAll('[data-tilt]'), ticking=false;
+  // scroll loop: stories always; mosaic drift only without reduced motion
+  var mosaic=document.getElementById('mosaic'), ticking=false;
   function frame(){
-    ticking=false; var y=scrollY, vh=innerHeight;
+    ticking=false;
     stories.forEach(function(s){s.update();});
     if(reduce)return;
-    floats.forEach(function(el){var k=+el.dataset.float; var f=[.06,-.04,.08,-.05,.05][k-1]; el.style.transform='translateY('+(-y*f)+'px)';});
-    tilts.forEach(function(el){var r=el.getBoundingClientRect(); var p=Math.min(1,Math.max(0,(vh-r.top)/(vh*.55))); var rx=(1-p)*10, s=.96+p*.04; el.style.transform='rotateX('+rx.toFixed(2)+'deg) scale('+s.toFixed(3)+')';});
+    if(mosaic){var y=Math.min(scrollY,1200);mosaic.style.transform='translateX(calc(-50% - '+(y*.18).toFixed(1)+'px)) rotateX(24deg) rotateZ(-3deg)';}
   }
   function tick(){if(!ticking){ticking=true;requestAnimationFrame(frame);}}
   addEventListener('scroll',tick,{passive:true}); addEventListener('resize',tick);
   frame();
   if(reduce)return;
-  // gentle idle bob on hero icons
   document.querySelectorAll('#icons img').forEach(function(img,i){img.animate([{translate:'0 0'},{translate:'0 -6px'},{translate:'0 0'}],{duration:3800+i*350,iterations:Infinity,easing:'ease-in-out',delay:i*300});});
 })();
 </script>

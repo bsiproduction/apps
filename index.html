@@ -104,8 +104,6 @@ p{margin:0}
 
 /* device frames */
 .mac{position:relative;border-radius:14px;background:#111317;box-shadow:0 60px 120px -40px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.08);overflow:hidden}
-.mac::before{content:"";display:block;height:30px;background:linear-gradient(#1f2227,#17191d);border-bottom:1px solid rgba(255,255,255,.06)}
-.mac::after{content:"";position:absolute;left:12px;top:9px;width:12px;height:12px;border-radius:50%;background:#ff5f57;box-shadow:20px 0 0 #febc2e,40px 0 0 #28c840}
 .mac img{width:100%;aspect-ratio:var(--ar,16/10);object-fit:cover;object-position:top}
 .phone{position:relative;width:100%;max-width:300px;border-radius:44px;background:#0d0e11;padding:10px;box-shadow:0 50px 100px -30px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.1),inset 0 0 0 2px #26282d}
 .phone::before{content:"";position:absolute;top:22px;left:50%;width:96px;height:26px;margin-left:-48px;background:#0d0e11;border-radius:16px;z-index:2}
@@ -225,7 +223,7 @@ p{margin:0}
   <div class="wrap">
     <p class="eyebrow">BSI Production · The app suite · Fall 2026</p>
     <h1 id="h1"><span class="w">Built</span> <span class="w">for</span> <span class="w">the</span> <span class="w">shop.</span><br><span class="w">Built</span> <span class="w">in-house.</span></h1>
-    <p class="lede">Five apps that carry a gig from the shop order to the truck, and from the truss to the GO call. Made by the people who use them.</p>
+    <p class="lede">Five apps that carry an event from the gear order in the shop to the truck, and from hanging the lights to running the show. Made by the crew who use them.</p>
     <div class="icons" id="icons">
       <a href="#shopcall" data-float="1"><img src="img/icon-shopcall.png" alt=""><span class="n">ShopCall</span><span class="v">web · iPhone · Android</span></a>
       <a href="#standby" data-float="2"><img src="img/icon-standby.png" alt=""><span class="n">StandBy</span><span class="v">Mac 0.2.15</span></a>
@@ -241,19 +239,19 @@ p{margin:0}
   <div class="wrap">
     <p class="eyebrow" data-reveal>One gig, five apps</p>
     <h2 data-reveal>They hand the job to each other.</h2>
-    <p class="lede" data-reveal>Draw the rig, and the packlist becomes the shop order. Release the order, and the pull shows up on a tech's phone. Pack the truck, and every case label carries a QR back to its page. Then call the show.</p>
+    <p class="lede" data-reveal>Draw the equipment plan, and the pack list becomes the gear order. Release the order, and the picking list shows up on a technician's phone. Pack the truck, and every case label carries a QR code back to its page. Then run the show, cue by cue.</p>
     <ol class="rail" data-reveal data-rail>
-      <li><img src="img/icon-patchmap.png" alt=""><div class="k">PatchMap</div><div class="d">Draw the rig once</div><span class="s">SCHEMATIC → PACKLIST</span></li>
-      <li><img src="img/icon-shopcall.png" alt=""><div class="k">ShopCall</div><div class="d">Build the order, run the pull</div><span class="s">ORDER → PULL → INTAKE</span></li>
+      <li><img src="img/icon-patchmap.png" alt=""><div class="k">PatchMap</div><div class="d">Draw the equipment plan</div><span class="s">SCHEMATIC → PACKLIST</span></li>
+      <li><img src="img/icon-shopcall.png" alt=""><div class="k">ShopCall</div><div class="d">Order the gear, pick it off the shelf</div><span class="s">ORDER → PICK → CHECK IN</span></li>
       <li><img src="img/icon-loader.png" alt=""><div class="k">Loader</div><div class="d">Pack the truck in 3D</div><span class="s">CASES → TRUCK → LABELS</span></li>
-      <li><img src="img/icon-trusstape.png" alt=""><div class="k">TrussTape</div><div class="d">Mark the truss at 1:1</div><span class="s">PLOT → TAPE</span></li>
-      <li><img src="img/icon-standby.png" alt=""><div class="k">StandBy</div><div class="d">Call the show</div><span class="s">ROS → GO</span></li>
+      <li><img src="img/icon-trusstape.png" alt=""><div class="k">TrussTape</div><div class="d">Label the lighting truss, full size</div><span class="s">PLOT → TAPE</span></li>
+      <li><img src="img/icon-standby.png" alt=""><div class="k">StandBy</div><div class="d">Run the show, cue by cue</div><span class="s">ROS → GO</span></li>
     </ol>
     <div class="links" data-reveal>
-      <div><b>PatchMap → ShopCall</b>Send to ShopCall… drops the packlist into the Orders inbox, with live stock counts and an “N short” pill.</div>
-      <div><b>ShopCall ↔ Loader</b>Loader opens the shop order through BSI Link, then sends pack numbers back so the pull screen draws the truck to scale.</div>
-      <div><b>Loader → ShopCall</b>Pack labels carry the gig's tape colour and a QR that opens the case in ShopCall from any phone.</div>
-      <div><b>Sheet → StandBy</b>The run of show is written in the BSI Google Sheet and handed to the caller Mac with Send to Host.</div>
+      <div><b>PatchMap → ShopCall</b>Send to ShopCall… drops the pack list into the Orders inbox, with live stock counts and a red “N short” marker for anything the shop doesn't have enough of.</div>
+      <div><b>ShopCall ↔ Loader</b>Loader opens the gear order through BSI Link, then sends each case's truck position back so the picking screen can draw the truck to scale.</div>
+      <div><b>Loader → ShopCall</b>Case labels carry the event's colour (every event gets its own colour of gaffer tape) and a QR code that opens the case in ShopCall from any phone.</div>
+      <div><b>Sheet → StandBy</b>The run of show (the minute-by-minute plan for the event) is written in a Google Sheet and handed to the show-calling Mac with Send to Host.</div>
     </div>
   </div>
 </section>
@@ -265,15 +263,15 @@ p{margin:0}
       <img src="img/icon-shopcall.png" alt="" data-reveal>
       <p class="eyebrow" data-reveal><b>ShopCall</b> · Web app · shop @30 · Android 1.4</p>
       <h2 data-reveal>The shop, <em>off paper.</em></h2>
-      <p class="lede" data-reveal>ShopCall is the everyday way the crew works with the shop's Google Sheets. Orders, pulls, intakes, loans, recounts and the board, on a phone in the truck bay or on the desk in the office.</p>
+      <p class="lede" data-reveal>ShopCall is how the crew runs the equipment shop from a phone or a desk. Gear orders for each event, picking the gear off the shelf, checking it back in, loans, stock counts and the shop notice board, all built on the shop's own Google Sheets.</p>
     </div>
 
     <div class="story">
       <ol class="steps">
-        <li class="step" data-step="0"><div class="k">Today</div><h3>Opens on what needs you.</h3><p>Each role gets its own Today: what to act on, what's coming, and whether anything is broken. When the list is empty it says so. When it couldn't check, it says that instead of pretending all is clear.</p></li>
-        <li class="step" data-step="1"><div class="k">Orders</div><h3>Start an order from the calendar.</h3><p>A gig on the calendar with “No order yet” gets a <code>Start its order</code> button. ShopCall clones the Shop Order Template and registers the gig as a DRAFT.</p></li>
-        <li class="step" data-step="2"><div class="k">Order Builder</div><h3>Type it the way you'd say it.</h3><p>One search box: <code>6 sm58</code>. Free counts are live for those dates, with other orders and loans already subtracted. Bundles, companions, a “usually goes along” list, and shortage fixes with a sub-rent or a stand-in. Then print case labels and <code>Release</code> to the shop.</p></li>
-        <li class="step" data-step="3"><div class="k">Shop Board</div><h3>The bulletin board, the shopping list, done today.</h3><p>Post to the board from any phone. Shopping-list items move from open to ordered to received. Inspections and cleaning show up under Done today.</p></li>
+        <li class="step" data-step="0"><div class="step-in"><div class="k">Today</div><h3>Opens on what needs you.</h3><p>Each role gets its own Today: what to act on, what's coming, and whether anything is broken. When the list is empty it says so. When it couldn't check, it says that instead of pretending all is clear.</p></div></li>
+        <li class="step" data-step="1"><div class="step-in"><div class="k">Orders</div><h3>Start an order from the calendar.</h3><p>An event on the calendar with “No order yet” gets a <code>Start its order</code> button. ShopCall copies the order template and registers the event as a draft.</p></div></li>
+        <li class="step" data-step="2"><div class="step-in"><div class="k">Order Builder</div><h3>Type it the way you'd say it.</h3><p>One search box: <code>6 sm58</code> means six SM58 microphones. It shows how many are actually free on those dates, with other events and loans already subtracted. Bundles, a “usually goes along” list, and fixes for shortages (rent one in, or swap in a stand-in). Then print the case labels and <code>Release</code> the order to the shop floor.</p></div></li>
+        <li class="step" data-step="3"><div class="step-in"><div class="k">Shop Board</div><h3>The bulletin board, the shopping list, done today.</h3><p>Post to the board from any phone. Shopping-list items move from open to ordered to received. Inspections and cleaning show up under Done today.</p></div></li>
       </ol>
       <div class="stage">
         <div class="frame" data-tilt>
@@ -282,31 +280,31 @@ p{margin:0}
           <div class="slide"><div class="mac" style="--ar:1800/1290"><img src="img/shopcall-order.jpg" alt="ShopCall Order Builder for Harvest Gala at Hilton with Audio and Video lines and free counts" loading="lazy"></div></div>
           <div class="slide"><div class="mac" style="--ar:1800/1290"><img src="img/shopcall-board.jpg" alt="ShopCall Shop Board with the bulletin board, the shopping list and done today" loading="lazy"></div></div>
         </div>
-        <div class="cap"><b>TODAY</b><span>Admin view, two gigs in prep</span></div>
+        <div class="cap"><b>TODAY</b><span>Desk view, two events in prep</span></div>
       </div>
     </div>
 
     <div class="bento">
-      <div class="tile h" data-reveal><span class="dot"></span><h4>Pulls, line by line</h4><p>The phone pull screen walks the order. Ring means not pulled, dot means pulled, truck means on the truck. If the order changes mid-pull, the line says so and asks for a <span class="kbd">Got it</span>.</p><div class="pic ph"><div class="phone"><img src="img/shopcall-pull.jpg" alt="ShopCall pull screen on a phone, 36 of 54 pulled, with an order-changed note" loading="lazy"></div></div></div>
-      <div class="tile h" data-reveal><span class="dot"></span><h4>Intakes when the gear comes back</h4><p>Count lines back in, report damage, add a note. Short or missing lines can go straight to the shopping list.</p><div class="pic ph"><div class="phone"><img src="img/shopcall-intake-phone.jpg" alt="ShopCall intake screen for River Wedding, 19 of 31 checked in, with three lines short or damaged" loading="lazy"></div></div></div>
-      <div class="tile" data-reveal><span class="dot"></span><h4>Three roles</h4><p>Shop techs on the floor, the office with Today, Gigs, Board and Tasks, and the desk with orders, approvals, errors and config.</p></div>
+      <div class="tile h" data-reveal><span class="dot"></span><h4>Picking the gear, line by line</h4><p>The phone screen walks the order item by item as a technician pulls gear off the shelf. Ring means not yet, dot means pulled, truck means it's on the truck. If the order changes part way through, the line says so and asks for a <span class="kbd">Got it</span>.</p><div class="pic ph"><div class="phone"><img src="img/shopcall-pull.jpg" alt="ShopCall pull screen on a phone, 36 of 54 pulled, with an order-changed note" loading="lazy"></div></div></div>
+      <div class="tile h" data-reveal><span class="dot"></span><h4>Check-in when the gear comes back</h4><p>Count each line back in, report damage, add a note. Anything short or missing can go straight to the shopping list.</p><div class="pic ph"><div class="phone"><img src="img/shopcall-intake-phone.jpg" alt="ShopCall intake screen for River Wedding, 19 of 31 checked in, with three lines short or damaged" loading="lazy"></div></div></div>
+      <div class="tile" data-reveal><span class="dot"></span><h4>Three roles</h4><p>Technicians on the shop floor, the office with Today, Gigs, Board and Tasks, and the desk with orders, approvals, errors and settings.</p></div>
       <div class="tile" data-reveal><span class="dot"></span><h4>Notes and feedback</h4><p>Anyone can leave a Note. It stays on each person's Today until they tap Seen. Send feedback goes to a shared inbox at the desk.</p></div>
-      <div class="tile" data-reveal><span class="dot"></span><h4>6 am digest</h4><p>A morning email with the same checks as the app's needs-you list, plus a post-gig report and Google Chat events.</p></div>
-      <div class="tile" data-reveal><span class="dot"></span><h4>Truck plan on the wall</h4><p>Loader's pack shows up in ShopCall to scale, nose to doors, curb side and street side, and on a wall display that refreshes itself.</p></div>
-      <div class="tile w" data-reveal><span class="dot"></span><h4>On every phone</h4><p>One crew link, <span class="mono">bsiproduction.github.io</span>. A BSI tile on the iPhone home screen, an Android app with no address bar, and a built-in QR scanner that opens an item or a case from its tag.</p></div>
+      <div class="tile" data-reveal><span class="dot"></span><h4>6 am digest</h4><p>A morning email with the same checks as the app's needs-you list, plus a report after each event and Google Chat alerts.</p></div>
+      <div class="tile" data-reveal><span class="dot"></span><h4>Truck plan on the wall</h4><p>Loader's truck plan shows up in ShopCall to scale, nose to doors, and on a big screen in the shop that refreshes itself.</p></div>
+      <div class="tile w" data-reveal><span class="dot"></span><h4>On every phone</h4><p>One crew link, <span class="mono">bsiproduction.github.io</span>. A BSI tile on the iPhone home screen, an Android app with no address bar, and a built-in QR scanner that opens an item or a case from the tag stuck to it.</p></div>
       <div class="tile w" data-reveal><span class="dot"></span><h4>Each page wears its stone</h4><p>Today is sandstone, Gigs are lapis, Inventory is jade, Approvals are amethyst. The Mineral header palette tells you where you are before you read a word.</p></div>
     </div>
 
     <div class="work" data-reveal>
-      <h3>A gig, from calendar to truck</h3>
+      <h3>An event, from calendar to truck</h3>
       <p class="sub">What actually happens in the app, in order.</p>
       <ol>
-        <li><b>No order yet</b>The gig lands on the calendar. Today offers Start its order.</li>
-        <li><b>Build it</b>Search, bundles, companions, fix the shortages, one gig per case.</li>
-        <li><b>Release</b>Print case labels. The tech's Today now shows Start pull.</li>
-        <li><b>Pull</b>Ring to dot, line by line. Loader plans the truck through BSI Link.</li>
-        <li><b>On the truck</b>Cases get marked. The wall and the truck plan update.</li>
-        <li><b>Back in</b>Intake with damage and notes. Anything outstanding is in the 6 am digest.</li>
+        <li><b>No order yet</b>The event lands on the calendar. Today offers Start its order.</li>
+        <li><b>Build it</b>Search, bundles, fix the shortages, one event per case.</li>
+        <li><b>Release</b>Print case labels. The technician's Today now shows Start pull.</li>
+        <li><b>Pick</b>Ring to dot, line by line, as the gear comes off the shelf. Loader plans the truck alongside.</li>
+        <li><b>On the truck</b>Cases get marked. The shop screen and the truck plan update.</li>
+        <li><b>Back in</b>Check-in with damage and notes. Anything outstanding is in the 6 am digest.</li>
       </ol>
     </div>
   </div>
@@ -319,16 +317,16 @@ p{margin:0}
       <img src="img/icon-standby.png" alt="" data-reveal>
       <p class="eyebrow" data-reveal><b>StandBy</b> · Mac · 0.2.15 · Companion module 1.0.4</p>
       <h2 data-reveal>One Mac runs the show. <em>Every GO on the Space bar.</em></h2>
-      <p class="lede" data-reveal>The caller holds the run of show. Every other laptop, tablet and phone on the Wi-Fi follows along in a browser, with nothing to install. A second Mac runs the teleprompter.</p>
+      <p class="lede" data-reveal>StandBy is for the person calling the show: the one who says “go” for every lighting change, video roll and walk-on. One Mac holds the plan. Every other laptop, tablet and phone on the Wi-Fi follows along in a browser, with nothing to install. A second Mac runs the teleprompter.</p>
     </div>
 
     <div class="story flip">
       <ol class="steps">
-        <li class="step" data-step="0"><div class="k">Caller</div><h3>Standby, Live, GO.</h3><p>Three cards across the top with time left and whether the show is running early or late. <code>Space</code> is GO, <code>⌘Z</code> backs one up, <code>S</code> sets Standby, <code>⌘B</code> is the big clock. Below it, the whole run of show by department.</p></li>
-        <li class="step" data-step="1"><div class="k">Display</div><h3>A wall screen that says it plainly.</h3><p><code>/display</code> shows Show on time, what's Live with its clock, and what's on Standby with everything that goes with it. Arrange it by name from any laptop: <code>?name=Green room</code>.</p></li>
-        <li class="step" data-step="2"><div class="k">Timer</div><h3>A speaker clock the size of the wall.</h3><p><code>/timer</code> is a countdown for the person on stage. <code>/script</code> scrolls the prompter script in step with the show.</p></li>
-        <li class="step" data-step="3"><div class="k">Prompter</div><h3>Paste the script. Mark the cues.</h3><p>Paste from a Google Doc or Word. A <code>⟦12⟧</code> mark shows where caller cue 12 falls, so the caller sees “N lines to go”. Mirror for beam-splitter glass, 4:3, 16:10 or 16:9, and a speaker timer you can drag to size.</p></li>
-        <li class="step" data-step="4"><div class="k">Talent screen</div><h3>What the speaker sees.</h3><p>Big, clean, and locked down in Show mode so nothing can disturb them. Practice mode rehearses privately while the crew screens stop following. Pace replays the rehearsal's reading speed.</p></li>
+        <li class="step" data-step="0"><div class="step-in"><div class="k">Caller</div><h3>StandBy, GO.</h3><p>The cards across the top show what's next, what's happening now with its time left, and whether the show is running early or late. <code>Space</code> is GO, <code>⌘Z</code> backs one up, <code>⌘B</code> is the big clock. Below it, the whole plan by department: video, audio, lighting.</p></div></li>
+        <li class="step" data-step="1"><div class="step-in"><div class="k">Display</div><h3>A backstage screen that says it plainly.</h3><p><code>/display</code> is for a big screen in the wings or the green room: Show on time, what's happening now with its clock, and what's next with everything that goes with it. Each screen can be arranged by name from any laptop.</p></div></li>
+        <li class="step" data-step="2"><div class="step-in"><div class="k">Timer</div><h3>A countdown the speaker can see.</h3><p><code>/timer</code> is a big countdown for the person on stage. <code>/script</code> scrolls the speaker's script in step with the show.</p></div></li>
+        <li class="step" data-step="3"><div class="step-in"><div class="k">Prompter</div><h3>Paste the script. Mark the cues.</h3><p>Paste the speaker's script from a Google Doc or Word. A <code>⟦12⟧</code> mark shows where cue 12 falls in the script, so the caller sees “N lines to go”. Mirror mode for teleprompter glass, any screen shape, and a speaker timer you can drag to size.</p></div></li>
+        <li class="step" data-step="4"><div class="step-in"><div class="k">Talent screen</div><h3>What the speaker sees.</h3><p>Big, clean, and locked down in Show mode so nothing can pop up in front of them. Practice mode rehearses privately while the crew screens stop following. Pace replays the rehearsal's reading speed.</p></div></li>
       </ol>
       <div class="stage">
         <div class="frame" data-tilt>
@@ -338,17 +336,17 @@ p{margin:0}
           <div class="slide"><div class="mac" style="--ar:1800/1125"><img src="img/standby-prompter.jpg" alt="StandBy prompter operator view with the script on the left, the talent preview on the right and the speaker timer" loading="lazy"></div></div>
           <div class="slide"><div class="mac" style="--ar:1800/1125"><img src="img/standby-talent.jpg" alt="StandBy talent screen showing the script in large type" loading="lazy"></div></div>
         </div>
-        <div class="cap"><b>CALLER</b><span>Cornell Homecoming sample show, five GOs in</span></div>
+        <div class="cap"><b>CALLER</b><span>Sample show, five cues in</span></div>
       </div>
     </div>
 
     <div class="bento">
-      <div class="tile h" data-reveal><span class="dot"></span><h4>Follow on any phone</h4><p>Scan the QR on the caller screen, pick your department, and see your Standby, what's Live and what's coming up. Editors get <span class="mono">/edit</span> with a PIN and can fix cues but never GO.</p><div class="pic ph"><div class="phone"><img src="img/standby-follow-phone.jpg" alt="StandBy follow screen on a phone for the Video department" loading="lazy"></div></div></div>
-      <div class="tile" data-reveal><span class="dot"></span><h4>From the Google Sheet</h4><p>Write the run of show in the BSI template. Check ROS, Send to Host, and Pull Show Results afterwards. CSV is the fallback with no internet.</p></div>
-      <div class="tile" data-reveal><span class="dot"></span><h4>Messages and banners</h4><p><span class="kbd">M</span> sends a silent text to the crew screens, and they can answer. Green banners close themselves after 8 seconds. Red ones wait for OK.</p></div>
-      <div class="tile" data-reveal><span class="dot"></span><h4>Rehearsal mode</h4><p>Before the first GO, times are recorded without counting as the real show. Rehearsal is violet, Standby is amber, Live is green, late is red.</p></div>
-      <div class="tile" data-reveal><span class="dot"></span><h4>Stream Deck</h4><p>The Bitfocus Companion module has a 15-key starter deck coloured like the caller screen. End Show needs a 2-second hold. A key can GO but never change the ROS.</p></div>
-      <div class="tile w" data-reveal><span class="dot"></span><h4>Finds the caller on its own</h4><p>The Prompter lists “StandBy on this network” over Bonjour. A caller it can see but can't reach shows greyed out with what to check.</p></div>
+      <div class="tile h" data-reveal><span class="dot"></span><h4>Follow on any phone</h4><p>Scan the QR code on the caller's screen, pick your department, and see what's next for you, what's happening now and what's coming up. Editors get <span class="mono">/edit</span> with a PIN and can fix the plan but never fire a GO.</p><div class="pic ph"><div class="phone"><img src="img/standby-follow-phone.jpg" alt="StandBy follow screen on a phone for the Video department" loading="lazy"></div></div></div>
+      <div class="tile" data-reveal><span class="dot"></span><h4>From the Google Sheet</h4><p>Write the run of show in the BSI template sheet. Check it, Send to Host, and Pull Show Results afterwards to see how the timing went. A plain CSV file works with no internet.</p></div>
+      <div class="tile" data-reveal><span class="dot"></span><h4>Messages and banners</h4><p><span class="kbd">M</span> sends a silent text to every crew screen, and they can answer. Green banners close themselves after 8 seconds. Red ones wait for an OK.</p></div>
+      <div class="tile" data-reveal><span class="dot"></span><h4>Rehearsal mode</h4><p>Before the first GO, times are recorded without counting as the real show. Rehearsal is violet, next is amber, now is green, late is red.</p></div>
+      <div class="tile" data-reveal><span class="dot"></span><h4>Stream Deck</h4><p>A Stream Deck is a pad of physical buttons. StandBy's Companion module gives it a 15-key layout coloured like the caller screen. End Show needs a 2-second hold. A button can fire a GO but never change the plan.</p></div>
+      <div class="tile w" data-reveal><span class="dot"></span><h4>Finds the caller on its own</h4><p>The Prompter lists “StandBy on this network” by itself, no addresses to type. A caller it can see but can't reach shows greyed out with what to check.</p></div>
       <div class="tile w" data-reveal><span class="dot"></span><h4>Never updates during a show</h4><p>Check for Updates… pulls small signed packages from BSI's own feed. It waits until the show is over, and Go Back to Previous Version… undoes it.</p></div>
     </div>
 
@@ -356,9 +354,9 @@ p{margin:0}
       <h3>Show day</h3>
       <p class="sub">From the Sheet to the last GO.</p>
       <ol>
-        <li><b>Send to Host</b>In the Sheet's StandBy menu: Check ROS, then Send to Host.</li>
-        <li><b>Load the show</b>Open StandBy, pick Caller, ⌘O the load.json.</li>
-        <li><b>Crew follow</b>They scan the QR and pick a department. Wall screens open /display.</li>
+        <li><b>Send to Host</b>In the Sheet's StandBy menu: check the plan, then Send to Host.</li>
+        <li><b>Load the show</b>Open StandBy, pick Caller, open the show file.</li>
+        <li><b>Crew follow</b>They scan the QR code and pick a department. Backstage screens open /display.</li>
         <li><b>Prompter links</b>The second Mac picks Prompter, enters the PIN and pastes the script.</li>
         <li><b>Call it</b>Space for every GO. The clock tracks early or late.</li>
         <li><b>End Show</b>Clocks stop, results save, and the Sheet pulls them back.</li>
@@ -374,16 +372,16 @@ p{margin:0}
       <img src="img/icon-patchmap.png" alt="" data-reveal>
       <p class="eyebrow" data-reveal><b>PatchMap</b> · Mac · 1.15.0</p>
       <h2 data-reveal>Draw the rig <em>once.</em></h2>
-      <p class="lede" data-reveal>PatchMap turns one schematic into the patch sheet, the cable labels, the packlist and the shop order. Audio, video, lighting, network and power, in racks, on tables and in zones.</p>
+      <p class="lede" data-reveal>PatchMap is where a technician draws the equipment plan for an event: every console, camera, speaker and the cables between them. That one drawing then becomes the cable list, the cable labels, the pack list and the gear order.</p>
     </div>
 
     <div class="story">
       <ol class="steps">
-        <li class="step" data-step="0"><div class="k">Schematic ⌘1</div><h3>Drop gear. Click port to port.</h3><p>Pull devices from the Library into Racks, Tables and Zones, or onto a venue map. Click a port, then another, to run a cable. Zoomed out, each device shows its name and how many ports are used.</p></li>
-        <li class="step" data-step="1"><div class="k">Inspector</div><h3>Every port, every label.</h3><p>Zoom in and the ports come back. A connector mismatch warns you, with <code>Patch anyway</code> for adapters. Cable ID, label and length live in the Inspector.</p></li>
-        <li class="step" data-step="2"><div class="k">Racks</div><h3>Open a rack, see what's inside.</h3><p>A dashed ring on a rack port means it's patched inside. Built racks save to the library and come back whole next time.</p></li>
-        <li class="step" data-step="3"><div class="k">Patch sheet ⌘2</div><h3>One line per cable.</h3><p>From, to, connector and label, with a tick box for patching on site. Assign cable IDs…, Print labels, Copy as text, or Print / PDF the whole pack.</p></li>
-        <li class="step" data-step="4"><div class="k">Packlist ⌘3</div><h3>Everything to pack, with Out and Back.</h3><p>Grouped by rack and zone. Live stock comes from ShopCall, and a red “N short” pill shows what the shop can't cover before you send the order.</p></li>
+        <li class="step" data-step="0"><div class="step-in"><div class="k">Schematic ⌘1</div><h3>Drop gear. Click port to port.</h3><p>Pull equipment from the library into racks, tables and zones (front of house, stage, monitor world), or onto a venue map. Click a socket on one device, then a socket on another, to run a cable. Zoomed out, each device shows its name and how many sockets are in use.</p></div></li>
+        <li class="step" data-step="1"><div class="step-in"><div class="k">Inspector</div><h3>Every socket, every label.</h3><p>Zoom in and the sockets come back. Plugging the wrong connector type warns you, with <code>Patch anyway</code> for adapters. Cable ID, label and length live in the Inspector.</p></div></li>
+        <li class="step" data-step="2"><div class="step-in"><div class="k">Racks</div><h3>Open a rack, see what's inside.</h3><p>A rack is a case full of equipment. A dashed ring on a rack's socket means the cable is connected inside. Built racks save to the library and come back whole next time.</p></div></li>
+        <li class="step" data-step="3"><div class="step-in"><div class="k">Patch sheet ⌘2</div><h3>One line per cable.</h3><p>From, to, connector type and label, with a tick box for connecting it on site. Assign cable IDs…, Print labels, Copy as text, or Print / PDF the whole pack.</p></div></li>
+        <li class="step" data-step="4"><div class="step-in"><div class="k">Packlist ⌘3</div><h3>Everything to pack, with Out and Back.</h3><p>Grouped by rack and zone. Live stock counts come from ShopCall, and a red “N short” marker shows what the shop can't cover before you send the order.</p></div></li>
       </ol>
       <div class="stage">
         <div class="frame" data-tilt>
@@ -398,11 +396,11 @@ p{margin:0}
     </div>
 
     <div class="bento">
-      <div class="tile" data-reveal><span class="dot"></span><span class="big">156</span><h4>Gear models with real ports</h4><p>BSI's library, plus looms, kits, your own models and built racks. ⌘L.</p></div>
-      <div class="tile" data-reveal><span class="dot"></span><h4>Patch several cables ⌘B</h4><p>Stage box 1–16 to console 1–16 in one go. Looms and snakes patch as a run.</p></div>
+      <div class="tile" data-reveal><span class="dot"></span><span class="big">156</span><h4>Gear models with their real sockets</h4><p>BSI's library, plus looms, kits, your own models and built racks. ⌘L.</p></div>
+      <div class="tile" data-reveal><span class="dot"></span><h4>Patch several cables ⌘B</h4><p>Stage box 1–16 to console 1–16 in one go. Bundled cables (looms and snakes) patch as one run.</p></div>
       <div class="tile" data-reveal><span class="dot"></span><h4>Find ⌘F</h4><p>Jump to a device, a port or a cable ID. A cable result shows where it runs from and to.</p></div>
-      <div class="tile w" data-reveal><span class="dot"></span><h4>Send to ShopCall…</h4><p>Order lines for a Gig rig, or a purchase list for an Install rig, go straight to ShopCall's PatchMap inbox. In ShopCall, Orders › Import from PatchMap.</p></div>
-      <div class="tile w" data-reveal><span class="dot"></span><h4>The patch pack ⌘P</h4><p>Schematic, patch sheet, packlist and labels in one PDF. Big schematics split across numbered sheets instead of shrinking. Link to Gig saves it into the gig's Drive folder.</p></div>
+      <div class="tile w" data-reveal><span class="dot"></span><h4>Send to ShopCall…</h4><p>Order lines for an event, or a purchase list for a permanent install, go straight to ShopCall's inbox. In ShopCall, Orders › Import from PatchMap.</p></div>
+      <div class="tile w" data-reveal><span class="dot"></span><h4>The patch pack ⌘P</h4><p>Drawing, cable list, pack list and labels in one PDF. Big drawings split across numbered sheets instead of shrinking. Link to Gig saves it into the event's Drive folder.</p></div>
       <div class="tile" data-reveal><span class="dot"></span><h4>Still to do</h4><p>The rig summary counts cables without an ID, devices with nothing plugged in, and a missing load-in date.</p></div>
       <div class="tile" data-reveal><span class="dot"></span><h4>Cable styles you can read in black and white</h4><p>Power is dashed, USB dotted, fibre a double line. Light and dark appearance.</p></div>
       <div class="tile" data-reveal><span class="dot"></span><h4>Share with another Mac</h4><p>One zip with the app, the library and the rigs. Updates are code-only and under 1 MB.</p></div>
@@ -412,12 +410,12 @@ p{margin:0}
       <h3>Build, prep, order, pack</h3>
       <p class="sub">The same drawing does all four.</p>
       <ol>
-        <li><b>New Rig ⌘N</b>Set the job number, venue, load-in and Gig or Install in the job chip.</li>
+        <li><b>New Rig ⌘N</b>Set the job number, venue and dates, and whether it's an event or a permanent install.</li>
         <li><b>Lay it out</b>Add Racks and Zones, click Library items in, drag them onto racks.</li>
-        <li><b>Cable it</b>Port to port. Set ID, label and length in the Inspector.</li>
+        <li><b>Cable it</b>Socket to socket. Set ID, label and length in the Inspector.</li>
         <li><b>Prep for site</b>Assign cable IDs, print labels, save the pack PDF.</li>
-        <li><b>Order it</b>Check the N short pill, then Send to ShopCall….</li>
-        <li><b>Pack it</b>Tick Out at load-out, Back at load-in.</li>
+        <li><b>Order it</b>Check the N short marker, then Send to ShopCall….</li>
+        <li><b>Pack it</b>Tick Out when it leaves the shop, Back when it returns.</li>
       </ol>
     </div>
   </div>
@@ -430,16 +428,16 @@ p{margin:0}
       <img src="img/icon-loader.png" alt="" data-reveal>
       <p class="eyebrow" data-reveal><b>Loader</b> · Mac · 0.4.0</p>
       <h2 data-reveal>Plan the truck <em>before anyone lifts a case.</em></h2>
-      <p class="lede" data-reveal>Loader packs a gig's cases into a truck in 3D, with BSI's own case library and the rules that go with it. Then it prints the labels, the checklist and the unloading order.</p>
+      <p class="lede" data-reveal>Loader packs an event's road cases into a truck in 3D, using BSI's own case library and the rules that come with each case. Then it prints the labels, the checklist and the unloading order.</p>
     </div>
 
     <div class="story flip">
       <ol class="steps">
-        <li class="step" data-step="0"><div class="k">The load</div><h3>A 26' box, packed nose to doors.</h3><p>Drag a case in, or press <code>+</code> to put it in the next open spot. <code>R</code> turns it, <code>T</code> tips it, <code>N</code> pushes it to the nose. The list on the right is the loading order the crew reads from.</p></li>
-        <li class="step" data-step="1"><div class="k">Colour by what's inside</div><h3>See the speakers from across the shop.</h3><p>Every physical case is linked to its contents in the Pack Repo. Switch on Colour by What's Inside and the truck lights up by group: speakers, amp racks, drive, splits, consoles.</p></li>
-        <li class="step" data-step="2"><div class="k">From above</div><h3>Four views, one plan.</h3><p>3D, Above, Side and Doors. The PDF prints all four, with a loading step by step and an Unloading at the venue page, last in first out, grouped by PatchMap zones.</p></li>
-        <li class="step" data-step="3"><div class="k">Open Shop Order</div><h3>The order becomes the To pack list.</h3><p>File › Open Shop Order… reads the gig through BSI Link. Pack cases one at a time with Enter, or Pack the rest and flip through the best three plans.</p></li>
-        <li class="step" data-step="4"><div class="k">Checklist</div><h3>In and Out, on paper or on a phone.</h3><p>The loadout checklist lists every case with an In box and an Out box. Send Pack Numbers writes each case's truck, position and step back to the order, so ShopCall can draw it.</p></li>
+        <li class="step" data-step="0"><div class="step-in"><div class="k">The load</div><h3>A 26' box, packed nose to doors.</h3><p>Drag a case in, or press <code>+</code> to put it in the next open spot. <code>R</code> turns it, <code>T</code> tips it, <code>N</code> pushes it to the nose. The list on the right is the loading order the crew reads from.</p></div></li>
+        <li class="step" data-step="1"><div class="step-in"><div class="k">Colour by what's inside</div><h3>See the speakers from across the shop.</h3><p>Every physical case is linked to what's packed inside it. Switch on Colour by What's Inside and the truck lights up by group: speakers, amplifier racks, consoles, cable.</p></div></li>
+        <li class="step" data-step="2"><div class="step-in"><div class="k">From above</div><h3>Four views, one plan.</h3><p>3D, Above, Side and Doors. The PDF prints all four, with a loading step by step and an Unloading at the venue page: last in, first out, grouped by where each case goes in the venue.</p></div></li>
+        <li class="step" data-step="3"><div class="step-in"><div class="k">Open Shop Order</div><h3>The gear order becomes the To pack list.</h3><p>File › Open Shop Order… reads the event's order from ShopCall. Pack cases one at a time with Enter, or Pack the rest and flip through the best three plans.</p></div></li>
+        <li class="step" data-step="4"><div class="step-in"><div class="k">Checklist</div><h3>In and Out, on paper or on a phone.</h3><p>The checklist lists every case with an In box and an Out box. Send Pack Numbers writes each case's truck, position and loading step back to the order, so ShopCall can draw the same truck.</p></div></li>
       </ol>
       <div class="stage">
         <div class="frame" data-tilt>
@@ -454,13 +452,13 @@ p{margin:0}
     </div>
 
     <div class="bento">
-      <div class="tile" data-reveal><span class="dot"></span><span class="big">29</span><h4>Case types, 77 pieces</h4><p>The 200, 300 and 350 series, rack cases and HDL and GTS karts, from the shop walkthrough, with size, weight and how many BSI owns.</p></div>
-      <div class="tile" data-reveal><span class="dot"></span><h4>Rules the shop already has</h4><p>This side up, nothing on top, fragile, on wheels, wheel cups, stays on the floor. A 300 tips onto its end, never its side.</p></div>
+      <div class="tile" data-reveal><span class="dot"></span><span class="big">29</span><h4>Road case types, 77 pieces</h4><p>The 200, 300 and 350 series cases, rack cases and speaker carts, straight from a walk around the shop, with size, weight and how many BSI owns.</p></div>
+      <div class="tile" data-reveal><span class="dot"></span><h4>Rules the shop already has</h4><p>This side up, nothing on top, fragile, on wheels, wheel cups, stays on the floor. A 300-series case tips onto its end, never its side.</p></div>
       <div class="tile" data-reveal><span class="dot"></span><h4>Blocks the bad stack</h4><p>No overlaps, nothing through a wall, nothing on a no-stack case. Wheeled cases only sit in matching wheel cups. Warns on overhang and heavy over light.</p></div>
-      <div class="tile w" data-reveal><span class="dot"></span><h4>Which truck do I need?</h4><p>Sprinter, 16', 24' and 26' box, 48' and 53' trailers, Isuzu and Penske presets with E-track rows. Choose a truck trial-packs every one and picks the smallest that holds everything.</p></div>
+      <div class="tile w" data-reveal><span class="dot"></span><h4>Which truck do I need?</h4><p>Sprinter van, 16', 24' and 26' box trucks, 48' and 53' trailers, with the E-track rails that straps lock into. Choose a truck trial-packs every one and picks the smallest that holds everything.</p></div>
       <div class="tile w" data-reveal><span class="dot"></span><h4>Import from a walkthrough</h4><p>Paste the transcript: “Amp rack A, 30 by 24 by 40, 220 pounds, this side up.” Loader reads it into the case library, or takes a CSV.</p></div>
-      <div class="tile" data-reveal><span class="dot"></span><h4>Load bars and straps</h4><p>Suggest Load Bars and Straps places them on the E-track rows. <span class="kbd">B</span> and <span class="kbd">S</span> add them by hand.</p></div>
-      <div class="tile" data-reveal><span class="dot"></span><h4>Pack labels</h4><p>Avery 5164, striped in the gig's tape colour, with a QR that opens the case in ShopCall.</p></div>
+      <div class="tile" data-reveal><span class="dot"></span><h4>Load bars and straps</h4><p>Suggest Load Bars and Straps places them on the rails so nothing shifts on the road. <span class="kbd">B</span> and <span class="kbd">S</span> add them by hand.</p></div>
+      <div class="tile" data-reveal><span class="dot"></span><h4>Pack labels</h4><p>Sheet labels striped in the event's tape colour, with a QR code that opens the case in ShopCall.</p></div>
       <div class="tile" data-reveal><span class="dot"></span><h4>Save to gig folder</h4><p>The plan PDF, the checklist and the labels land in the order's Drive folder.</p></div>
     </div>
 
@@ -468,11 +466,11 @@ p{margin:0}
       <h3>Pack a gig from its shop order</h3>
       <p class="sub">Six steps, all undoable.</p>
       <ol>
-        <li><b>Open Shop Order ⇧⌘S</b>Pick the gig. Loader builds the To pack list.</li>
+        <li><b>Open Shop Order ⇧⌘S</b>Pick the event. Loader builds the To pack list.</li>
         <li><b>Choose a truck ⇧⌘T</b>The smallest that takes it all.</li>
         <li><b>Pack the rest ⇧⌘↩</b>Flip through Best fit, Floor first and Street side first. Keep one.</li>
-        <li><b>Bars and straps</b>Suggested on the E-track rows.</li>
-        <li><b>Send pack numbers</b>ShopCall's pull screen now draws the truck.</li>
+        <li><b>Bars and straps</b>Suggested on the rails.</li>
+        <li><b>Send pack numbers</b>ShopCall's picking screen now draws the truck.</li>
         <li><b>Print</b>Labels in tape colour, the PDF for the crew, saved to the gig folder.</li>
       </ol>
     </div>
@@ -486,29 +484,29 @@ p{margin:0}
       <img src="img/icon-trusstape.png" alt="" data-reveal>
       <p class="eyebrow" data-reveal><b>TrussTape</b> · Mac · 0.1.1 <span class="badge">Beta</span></p>
       <h2 data-reveal>Stick the plot <em>on the truss.</em></h2>
-      <p class="lede" data-reveal>TrussTape takes a Vectorworks Spotlight plot and prints full-scale hang tapes on an ordinary 80 mm receipt printer. Every fixture's label sits exactly where that fixture hangs.</p>
+      <p class="lede" data-reveal>Stage lights hang from truss, the metal beams above a stage. TrussTape takes the lighting designer's drawing and prints a full-size paper tape on an ordinary receipt printer. Stick it on the truss and every light's label sits exactly where that light hangs.</p>
     </div>
 
     <div class="story">
       <ol class="steps">
-        <li class="step" data-step="0"><div class="k">Positions</div><h3>Every truss and boom, with its fixtures.</h3><p>Run the export script in Vectorworks and TrussTape opens the plot. Pick Truss 1, tick the label lines you want, and the pages preview as they'll print, so no label ever straddles a join.</p></li>
-        <li class="step" data-step="1"><div class="k">The tape</div><h3>Unit, channel, address, colour, purpose.</h3><p>Each label prints on a ruler in feet and inches or metres. Zero at the centre of the position or the start of the tape. Flip it to read from upstage. Cut at the ✂ lines and butt the pages.</p></li>
+        <li class="step" data-step="0"><div class="step-in"><div class="k">Positions</div><h3>Every truss and boom, with its lights.</h3><p>Run the export script in Vectorworks (the drawing program) and TrussTape opens the plan. Pick Truss 1, tick the label lines you want, and the pages preview as they'll print, so no label is cut in half at a join.</p></div></li>
+        <li class="step" data-step="1"><div class="step-in"><div class="k">The tape</div><h3>Unit, channel, address, colour, purpose.</h3><p>Each label prints on a ruler in feet and inches or metres, so the crew can measure as they go. Zero at the centre of the truss or the start of the tape. Flip it to read from the other end. Cut at the ✂ lines and butt the pages together.</p></div></li>
       </ol>
       <div class="stage">
         <div class="frame" data-tilt>
           <div class="slide on"><div class="mac" style="--ar:16/10"><img src="img/trusstape-app.jpg" alt="TrussTape with the sample plot open, Truss 1 selected, and ten tape pages previewed" loading="lazy"></div></div>
           <div class="slide"><div class="mac" style="--ar:16/10"><img src="img/trusstape-tape.jpg" alt="Close-up of a printed tape header for Truss 2, page 2 of 10, trim 22 feet" loading="lazy" style="object-fit:cover;object-position:center"></div></div>
         </div>
-        <div class="cap"><b>AS HUNG</b><span>Sample Corporate Ballroom, 24 fixtures, 3 positions</span></div>
+        <div class="cap"><b>AS HUNG</b><span>Sample ballroom plan, 24 lights, 3 trusses</span></div>
       </div>
     </div>
 
     <div class="bento">
-      <div class="tile w" data-reveal><span class="dot"></span><h4>From Vectorworks, without touching the drawing</h4><p>The export script writes every Lighting Device and Light Position to a <span class="mono">.tape.json</span> and opens TrussTape. Or drop in the CSV from Export Instrument Data.</p></div>
-      <div class="tile" data-reveal><span class="dot"></span><span class="big">1:1</span><h4>Or a pocket strip</h4><p>1:2 to 1:12 for a reference you can carry, from the same plot.</p></div>
+      <div class="tile w" data-reveal><span class="dot"></span><h4>From Vectorworks, without touching the drawing</h4><p>The export script writes every light and every hanging position to a small file and opens TrussTape. It changes nothing in the drawing. Or drop in the spreadsheet from Export Instrument Data.</p></div>
+      <div class="tile" data-reveal><span class="dot"></span><span class="big">1:1</span><h4>Full size, or a pocket strip</h4><p>1:2 to 1:12 for a reference you can carry, from the same plan.</p></div>
       <div class="tile" data-reveal><span class="dot"></span><h4>Any roll</h4><p>80 mm receipt, 58 mm, Dymo 2¼" continuous, or custom. Page length and paper loss are adjustable.</p></div>
-      <div class="tile" data-reveal><span class="dot"></span><h4>Feed calibration</h4><p>Print a 500 mm strip, measure it, type the number. A percent is inches over a 40' truss, so the tape is stretched to match.</p></div>
-      <div class="tile" data-reveal><span class="dot"></span><h4>Print or PDF</h4><p>Print this position, Print all, Save PDF, Save all as PDF. Any CUPS printer with a custom roll size.</p></div>
+      <div class="tile" data-reveal><span class="dot"></span><h4>Feed calibration</h4><p>Printers don't feed paper perfectly. Print a 500 mm strip, measure it, type the number, and every tape after that is stretched to match. A percent off is inches over a 40' truss.</p></div>
+      <div class="tile" data-reveal><span class="dot"></span><h4>Print or PDF</h4><p>Print this position, Print all, Save PDF, Save all as PDF. Any printer your Mac can see, with a custom roll size.</p></div>
       <div class="tile x" data-reveal><span class="dot"></span><h4>First build</h4><p>0.1.1 is the first test build. It prints to PDF today and is waiting on its first run on a thermal printer and its first run of the script inside Vectorworks. Feedback from that test shapes 0.2.</p></div>
     </div>
 
@@ -520,7 +518,7 @@ p{margin:0}
         <li><b>Pick the position</b>Truss 1, and the label lines you want on it.</li>
         <li><b>80 mm at 1:1</b>Print this position.</li>
         <li><b>Cut and butt</b>Tear at the ✂ lines and join the pages end to end.</li>
-        <li><b>Stick it on</b>Hang each fixture at its label.</li>
+        <li><b>Stick it on</b>Hang each light at its label.</li>
       </ol>
     </div>
   </div>
@@ -538,7 +536,7 @@ p{margin:0}
       <div class="tile" data-reveal><span class="dot"></span><h4>Send Feedback…</h4><p>One shared collector. It lands in the desk's inbox in ShopCall.</p></div>
       <div class="tile" data-reveal><span class="dot"></span><h4>One look</h4><p>Montserrat for words, IBM Plex Mono for numbers, light and dark, and one accent per app.</p></div>
       <div class="tile" data-reveal><span class="dot"></span><h4>Apple Silicon</h4><p>macOS 12 or later. Installed once from a Drive zip, then it updates itself.</p></div>
-      <div class="tile" data-reveal><span class="dot"></span><h4>BSI Link</h4><p>The small web app that lets the Mac apps read and write the shop's Sheets.</p></div>
+      <div class="tile" data-reveal><span class="dot"></span><h4>BSI Link</h4><p>The small web app that lets the Mac apps read and write the shop's Google Sheets.</p></div>
     </div>
     <div class="vers" data-reveal>
       <table>
@@ -581,14 +579,14 @@ p{margin:0}
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:.05});
   document.querySelectorAll('[data-reveal]').forEach(function(el){io.observe(el);});
 
-  // scrollytelling
+  // scrollytelling: the picture follows the text block that has reached the middle of the screen
+  var stories=[];
   document.querySelectorAll('.story').forEach(function(story){
-    var steps=story.querySelectorAll('.step'), slides=story.querySelectorAll('.slide'), cap=story.querySelector('.cap');
-    var caps=[];steps.forEach(function(s){caps.push(s.querySelector('.k').textContent.replace(/\s*[⌘\d]+$/,''));});
-    function go(i){steps.forEach(function(s,j){s.classList.toggle('on',j===i);});slides.forEach(function(s,j){s.classList.toggle('on',j===i);});if(cap){cap.querySelector('b').textContent=caps[i].toUpperCase();}}
-    go(0);
-    var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){go(+e.target.dataset.step);}});},{rootMargin:'-45% 0px -45% 0px',threshold:0});
-    steps.forEach(function(s){so.observe(s);});
+    var steps=[].slice.call(story.querySelectorAll('.step')), slides=story.querySelectorAll('.slide'), cap=story.querySelector('.cap'), cur=-1;
+    var caps=steps.map(function(s){return s.querySelector('.k').textContent.replace(/\s*[\u2318\d]+$/,'');});
+    function go(i){if(i===cur)return;cur=i;steps.forEach(function(s,j){s.classList.toggle('on',j===i);});slides.forEach(function(s,j){s.classList.toggle('on',j===i);});if(cap){cap.querySelector('b').textContent=caps[i].toUpperCase();}}
+    story.update=function(){var line=innerHeight*(innerWidth<=820?.66:.55),i=0;for(var j=0;j<steps.length;j++){if(steps[j].querySelector('.step-in').getBoundingClientRect().top<=line)i=j;}go(i);};
+    story.update(); stories.push(story);
   });
 
   // rail
@@ -600,16 +598,18 @@ p{margin:0}
   var no=new IntersectionObserver(function(es){es.forEach(function(e){var a=secs.find(function(p){return p[0]===e.target;});if(!a)return;if(e.isIntersecting){links.forEach(function(l){l.classList.remove('on');});a[1].classList.add('on');}});},{rootMargin:'-40% 0px -55% 0px'});
   secs.forEach(function(p){no.observe(p[0]);});
 
-  if(reduce)return;
-  // parallax + tilt on scroll
   var floats=document.querySelectorAll('[data-float]'), tilts=document.querySelectorAll('[data-tilt]'), ticking=false;
   function frame(){
     ticking=false; var y=scrollY, vh=innerHeight;
+    stories.forEach(function(s){s.update();});
+    if(reduce)return;
     floats.forEach(function(el){var k=+el.dataset.float; var f=[.06,-.04,.08,-.05,.05][k-1]; el.style.transform='translateY('+(-y*f)+'px)';});
     tilts.forEach(function(el){var r=el.getBoundingClientRect(); var p=Math.min(1,Math.max(0,(vh-r.top)/(vh*.55))); var rx=(1-p)*10, s=.96+p*.04; el.style.transform='rotateX('+rx.toFixed(2)+'deg) scale('+s.toFixed(3)+')';});
   }
-  addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(frame);}},{passive:true});
+  function tick(){if(!ticking){ticking=true;requestAnimationFrame(frame);}}
+  addEventListener('scroll',tick,{passive:true}); addEventListener('resize',tick);
   frame();
+  if(reduce)return;
   // gentle idle bob on hero icons
   document.querySelectorAll('#icons img').forEach(function(img,i){img.animate([{translate:'0 0'},{translate:'0 -6px'},{translate:'0 0'}],{duration:3800+i*350,iterations:Infinity,easing:'ease-in-out',delay:i*300});});
 })();

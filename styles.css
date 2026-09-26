@@ -45,7 +45,7 @@ code,.kbd{font:500 .9em var(--mono);color:var(--fg);background:var(--raised);pad
   radial-gradient(30% 30% at 55% 70%,rgba(63,179,167,.12),transparent 70%),
   radial-gradient(28% 28% at 30% 80%,rgba(240,146,74,.12),transparent 70%)}
 .hero .wrap{position:relative}
-.hero h1{font-size:clamp(40px,8vw,104px);font-weight:800;letter-spacing:-.035em;line-height:.98;margin:18px auto 22px;max-width:14ch}
+.hero h1{font-size:clamp(40px,7vw,96px);font-weight:800;letter-spacing:-.035em;line-height:.98;margin:18px auto 22px;max-width:18ch}
 .hero h1 .w{display:inline-block}
 .hero .lede{font-size:clamp(17px,2.2vw,23px);color:var(--muted);max-width:46ch;margin:0 auto;font-weight:500;line-height:1.45}
 .icons{display:flex;justify-content:center;gap:clamp(14px,3vw,36px);margin:56px auto 0;flex-wrap:wrap}
@@ -187,4 +187,6 @@ html:not(.js) .shot{opacity:1;transform:none}
 }
 
 @media (max-width:640px){.shot.sub{display:none}.feat.has-sub{margin-bottom:0}.vis.phones .shot.panel{display:none}.vis.phones .shot.ph{width:78%}}
-.hero .note{margin:18px auto 0;font-size:14px;color:var(--faint);max-width:52ch}
+.hero .note{margin:14px auto 0;font-size:clamp(16px,1.8vw,19px);color:var(--fg);font-weight:600;max-width:52ch}
+
+.kit .why{margin-top:36px}

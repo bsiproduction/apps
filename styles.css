@@ -29,7 +29,9 @@ code,.kbd{font:500 .9em var(--mono);color:var(--fg);background:var(--raised);pad
 .nav{position:fixed;inset:0 0 auto 0;z-index:50;padding-top:env(safe-area-inset-top,0px);background:rgba(10,11,13,.72);backdrop-filter:saturate(160%) blur(18px);-webkit-backdrop-filter:saturate(160%) blur(18px);border-bottom:1px solid rgba(255,255,255,.06)}
 .nav .wrap{display:flex;align-items:center;gap:20px;height:52px}
 .nav .brand{display:flex;align-items:center;gap:10px;font-weight:700;text-decoration:none;font-size:15px}
-.nav .brand img{height:18px;width:auto}
+.nav .brand{flex:0 0 auto}
+.nav .brand img{height:18px;width:auto;flex:0 0 auto;max-width:none}
+.nav ul{min-width:0}
 .nav ul{list-style:none;margin:0 0 0 auto;padding:0;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
 .nav ul::-webkit-scrollbar{display:none}
 .nav li a{display:block;padding:7px 12px;border-radius:999px;font-size:13px;font-weight:500;color:var(--muted);text-decoration:none;white-space:nowrap;transition:color .2s,background .2s}
